@@ -1,0 +1,64 @@
+{
+  "gallery": [
+    {
+      "img": "images.jpeg",
+      "location": "Rome"
+    },
+    {
+      "img": "paris.jpg",
+      "location": "Paris"
+    },
+    {
+      "img": "swiss-alps.jpg",
+      "location": "Swiss Alps"
+    },
+    {
+      "img": "maldives.jpg",
+      "location": "Maldives"
+    },
+    {
+      "img": "mumbai.jpg",
+      "location": "Mumbai"
+    },
+    {
+      "img": "tokyo.jpg",
+      "location": "Tokyo"
+    },
+    {
+      "img": "phuket.jpg",
+      "location": "Phuket"
+    },
+    {
+      "img": "costa-rica.jpg",
+      "location": "Costa Rica"
+    },
+    {
+      "img": "tahiti.jpg",
+      "location": "Tahiti"
+    },
+    {
+      "img": "amsterdam.jpg",
+      "location": "Amsterdam"
+    },
+    {
+      "img": "sydney.jpg",
+      "location": "Sydney"
+    },
+    {
+      "img": "dubai.jpg",
+      "location": "Dubai"
+    },
+    {
+      "img": "bali.jpg",
+      "location": "Bali"
+    },
+    {
+      "img": "rio-de-janeiro.jpg",
+      "location": "Rio De Janeiro"
+    },
+    {
+      "img": "santorini.jpg",
+      "location": "Santorini"
+    }
+  ]
+}
