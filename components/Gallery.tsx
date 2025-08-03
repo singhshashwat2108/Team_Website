@@ -63,7 +63,7 @@ const Gallery = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/img/gallery_background.jpeg" 
+            src="/gallery_background.jpeg" 
             alt="Gallery Background"
             fill
             className="object-cover"
@@ -76,7 +76,7 @@ const Gallery = () => {
         {/* Content Container */}
         <div className="relative z-10 px-4 sm:px-6 lg:px-8">
           {/* Image Grid */}
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-0 pb-20">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-1 pb-20">
             {db.gallery.map((loc: gallery, i: number) => (
               <div
                 key={i}

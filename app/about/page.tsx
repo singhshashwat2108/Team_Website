@@ -6,13 +6,77 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Rocket, Award, Users, School, Linkedin } from "lucide-react"
+import { motion } from "framer-motion"
+
+// Star interface for TypeScript
+interface Star {
+  id: number;
+  left: number;
+  animationDuration: number;
+  opacity: number;
+  size: number;
+}
+
+// Falling Stars Component
+const FallingStars = () => {
+  const [stars, setStars] = useState<Star[]>([])
+
+  useEffect(() => {
+    const generateStars = () => {
+      const newStars = []
+      for (let i = 0; i < 50; i++) {
+        newStars.push({
+          id: i,
+          left: Math.random() * 100,
+          animationDuration: Math.random() * 3 + 2,
+          opacity: Math.random() * 0.8 + 0.2,
+          size: Math.random() * 3 + 1,
+        })
+      }
+      setStars(newStars)
+    }
+
+    generateStars()
+  }, [])
+
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      {stars.map((star) => (
+        <div
+          key={star.id}
+          className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+          style={{
+            left: `${star.left}%`,
+            top: '-10px',
+            opacity: star.opacity,
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            animation: `fall ${star.animationDuration}s linear infinite`,
+            animationDelay: `${Math.random() * 2}s`,
+          }}
+        />
+      ))}
+      <style jsx>{`
+        @keyframes fall {
+          0% {
+            transform: translateY(-10px) rotate(0deg);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+          }
+        }
+      `}</style>
+    </div>
+  )
+}
 
 export default function AboutPage() {
   const [scrollY, setScrollY] = useState(0)
   const [selectedYear, setSelectedYear] = useState("2024-2025")
   const [isMobile, setIsMobile] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  //const [isCircleHovered, setIsCircleHovered] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
   const lastScrollTime = useRef(0)
   const cardContainerRef = useRef<HTMLDivElement>(null)
@@ -397,8 +461,6 @@ export default function AboutPage() {
   const getCardStyle = (relativeIndex: number) => {
     const absIndex = Math.abs(relativeIndex)
 
-    //if (absIndex > 3) return { display: "none" }
-
     // Spread cards to both sides based on their relative position
     const baseTransform = relativeIndex * (isMobile ? 60 : 80) 
     const scale = 1 - absIndex *  (isMobile ? 0.15 : 0.12) 
@@ -415,115 +477,135 @@ export default function AboutPage() {
     }
   }
 
-
   return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative pb-20">
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 -z-10"></div>      
+    <div className="flex flex-col min-h-screen relative bg-gray-900">
+      {/* Falling Stars Background */}
+      <FallingStars />
       
        {/* Mission & Vision */}
-      <section className="py-12 sm:py-16 lg:py-20">
+      <section className="py-12 sm:py-16 lg:py-20 relative z-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-white">Our Mission</h2>
-              <p className="text-slate-300 mb-4 sm:mb-6 text-sm sm:text-base">
+              <p className="text-white/90 mb-4 sm:mb-6 text-sm sm:text-base">
                 Team Sammard is dedicated to pushing the boundaries of amateur rocketry and aerospace innovations in India.
                 Our mission is to enhance the technical and professional growth of our members through hands-on, project-based learning. We design and build high-performance launch vehicles for intercollegiate rocketry competitions, while also developing propulsion systems, avionics hardware and software, and other advanced aerospace technologies.
-
-
-                strive to provide hands-on engineering experience to students while competing at the highest levels of
-                collegiate rocketry competitions.
               </p>
-              <p className="text-slate-300 text-sm sm:text-base">
+              <p className="text-white/90 text-sm sm:text-base">
                 Based at VIT Vellore's Innovation Creation Lab, we foster a collaborative environment where students can apply
                 theoretical knowledge to practical aerospace challenges, preparing the next generation of aerospace
                 engineers.
               </p>
-            </div>
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              <div className="bg-blue-600/20 backdrop-blur-sm rounded-lg p-4 sm:p-6 flex flex-col items-center text-center border border-slate-600/50">
-                <Rocket className="h-8 w-8 sm:h-10 sm:w-10 text-blue-400 mb-2 sm:mb-4" />
+            </motion.div>
+            <motion.div
+              className="grid grid-cols-2 gap-3 sm:gap-4"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                className="backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-colors border border-white/20 rounded-lg p-4 sm:p-6 flex flex-col items-center text-center"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Rocket className="h-8 w-8 sm:h-10 sm:w-10 text-blue-300 mb-2 sm:mb-4" />
                 <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-white">Innovation</h3>
-                <p className="text-xs sm:text-sm text-slate-300">
+                <p className="text-xs sm:text-sm text-white/80">
                   Pushing the boundaries of collegiate aerospace engineering
                 </p>
-              </div>
-              <div className="bg-blue-600/20 backdrop-blur-sm rounded-lg p-4 sm:p-6 flex flex-col items-center text-center border border-slate-600/50">
-                <Users className="h-8 w-8 sm:h-10 sm:w-10 text-blue-400 mb-2 sm:mb-4" />
+              </motion.div>
+              <motion.div
+                className="backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-colors border border-white/20 rounded-lg p-4 sm:p-6 flex flex-col items-center text-center"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Users className="h-8 w-8 sm:h-10 sm:w-10 text-blue-300 mb-2 sm:mb-4" />
                 <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-white">Collaboration</h3>
-                <p className="text-xs sm:text-sm text-slate-300">Working together to achieve extraordinary results</p>
-              </div>
-              <div className="bg-blue-600/20 backdrop-blur-sm rounded-lg p-4 sm:p-6 flex flex-col items-center text-center border border-slate-600/50">
-                <School className="h-8 w-8 sm:h-10 sm:w-10 text-blue-400 mb-2 sm:mb-4" />
+                <p className="text-xs sm:text-sm text-white/80">Working together to achieve extraordinary results</p>
+              </motion.div>
+              <motion.div
+                className="backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-colors border border-white/20 rounded-lg p-4 sm:p-6 flex flex-col items-center text-center"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                <School className="h-8 w-8 sm:h-10 sm:w-10 text-blue-300 mb-2 sm:mb-4" />
                 <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-white">Education</h3>
-                <p className="text-xs sm:text-sm text-slate-300">Providing hands-on learning experiences</p>
-              </div>
-              <div className="bg-blue-600/20 backdrop-blur-sm rounded-lg p-4 sm:gap-4 flex flex-col items-center text-center border border-slate-600/50">
-                <Award className="h-8 w-8 sm:h-10 sm:w-10 text-blue-400 mb-2 sm:mb-4" />
+                <p className="text-xs sm:text-sm text-white/80">Providing hands-on learning experiences</p>
+              </motion.div>
+              <motion.div
+                className="backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-colors border border-white/20 rounded-lg p-4 sm:p-6 flex flex-col items-center text-center"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <Award className="h-8 w-8 sm:h-10 sm:w-10 text-blue-300 mb-2 sm:mb-4" />
                 <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2 text-white">Excellence</h3>
-                <p className="text-xs sm:text-sm text-slate-300">Striving for the highest standards in all we do</p>
-              </div>
-            </div>
+                <p className="text-xs sm:text-sm text-white/80">Striving for the highest standards in all we do</p>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
-      {/* Additional Content for Scrolling */}
-      <div className="min-h-screen bg-slate-900/50 flex items-center justify-center">
-        <div className="text-center text-white max-w-4xl px-6">
+
+      {/* Legacy Section */}
+      <section className="min-h-screen backdrop-blur-sm bg-white/5 flex items-center justify-center relative z-10">
+        <motion.div
+          className="text-center text-white max-w-4xl px-6"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-4xl font-bold mb-8">Our Legacy</h2>
-          <p className="text-xl leading-relaxed text-slate-300 mb-6">
+          <p className="text-xl leading-relaxed text-white/90 mb-6">
             Over the years, our organization has been led by exceptional individuals who have shaped our mission and
             values. Each board has brought unique perspectives and achievements that continue to inspire our community.
           </p>
-          
-        </div>
-      </div>
+        </motion.div>
+      </section>
 
-      {/* Navigation Header
-      <nav className="flex items-center justify-between px-6 py-4 bg-slate-900/50 backdrop-blur-sm">
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center mr-4">
-            <span className="text-white font-bold text-sm">J</span>
-          </div>
-        </div>
-        
-        <div className="hidden md:flex items-center space-x-8 text-white font-medium">
-          <a href="#" className="hover:text-blue-400 transition-colors">
-            HOME
-          </a>
-          <a href="#" className="text-blue-400">
-            ABOUT
-          </a>
-          <a href="#" className="hover:text-blue-400 transition-colors">
-            PROJECTS
-          </a>
-          <a href="#" className="hover:text-blue-400 transition-colors">
-            EVENTS
-          </a>
-          <a href="#" className="hover:text-blue-400 transition-colors">
-            TIMELINE
-          </a>
-          <a href="#" className="hover:text-blue-400 transition-colors">
-            SPONSORS
-          </a>
-        </div>
-        <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">Contact Us</Button>
-      </nav>
-            
-      */}
-      {/* Main Content */}
-      <div className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20">
+      {/* Main Team Content */}
+      <div className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20 z-10">
         {/* Title */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white text-center mb-6 sm:mb-8 tracking-wider px-4">
+        <motion.h1
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white text-center mb-6 sm:mb-8 tracking-wider px-4"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           MEET OUR TEAM
-        </h1>
+        </motion.h1>
+
         {/* Mission Control Dropdown */}
-        <div className="mb-8 sm:mb-12 px-4">
+        <motion.div
+          className="mb-8 sm:mb-12 px-4"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <div className="text-center mb-4">
             <div className="flex justify-center items-center space-x-2 mb-2">
-              <Rocket className="h-4 w-4 text-blue-400" />
+              <Rocket className="h-4 w-4 text-blue-300" />
               <span className="text-white/80 text-sm font-medium">MISSION CONTROL</span>
-              <Rocket className="h-4 w-4 text-blue-400 rotate-180" />
+              <Rocket className="h-4 w-4 text-blue-300 rotate-180" />
             </div>
             <div className="h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent w-32 mx-auto"></div>
           </div>
@@ -531,26 +613,26 @@ export default function AboutPage() {
             {/* Dropdown Trigger */}
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="w-full bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 border-2 border-slate-600 hover:border-blue-500 rounded-xl px-6 py-4 flex items-center justify-between transition-all duration-300 backdrop-blur-sm shadow-lg"
+              className="w-full backdrop-blur-md bg-white/10 hover:bg-white/20 border-2 border-white/20 hover:border-blue-400/50 rounded-xl px-6 py-4 flex items-center justify-between transition-all duration-300 shadow-lg"
             >
               <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                <div className="w-3 h-3 bg-blue-300 rounded-full animate-pulse"></div>
                 <div className="text-left">
-                  <div className="text-xs text-slate-400 font-medium">MISSION YEAR</div>
+                  <div className="text-xs text-white/70 font-medium">MISSION YEAR</div>
                   <div className="text-white font-bold">{selectedYear}</div>
                 </div>
               </div>
               <ChevronDown
-                className={`h-5 w-5 text-blue-400 transition-transform duration-300 ${
+                className={`h-5 w-5 text-blue-300 transition-transform duration-300 ${
                   isDropdownOpen ? "rotate-180" : ""
                 }`}
               />
             </button>
             {/* Dropdown Menu */}
             {isDropdownOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-slate-800/95 backdrop-blur-md border border-slate-600 rounded-xl shadow-2xl shadow-black/50 overflow-hidden z-50">
+              <div className="absolute top-full left-0 right-0 mt-2 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-2xl shadow-black/50 overflow-hidden z-50">
                 <div className="p-2">
-                  <div className="text-xs text-slate-400 font-medium px-3 py-2 border-b border-slate-700">
+                  <div className="text-xs text-white/70 font-medium px-3 py-2 border-b border-white/20">
                     SELECT MISSION YEAR
                   </div>
                   {missionYears.map((mission, index) => (
@@ -562,15 +644,15 @@ export default function AboutPage() {
                       }}
                       className={`w-full flex items-center justify-between px-3 py-3 rounded-lg transition-all duration-200 ${
                         selectedYear === mission.year
-                          ? "bg-blue-600/20 border border-blue-500/30"
-                          : "hover:bg-slate-700/50"
+                          ? "bg-blue-500/20 border border-blue-400/30"
+                          : "hover:bg-white/10"
                       }`}
                     >
                       <div className="flex items-center space-x-3">
                         <div className="relative">
                           <Rocket
                             className={`h-4 w-4 transition-all duration-200 ${
-                              selectedYear === mission.year ? "text-blue-400" : "text-slate-500"
+                              selectedYear === mission.year ? "text-blue-300" : "text-white/50"
                             }`}
                           />
                           {selectedYear === mission.year && (
@@ -582,13 +664,13 @@ export default function AboutPage() {
                           <div className={`text-xs ${mission.color}`}>{mission.status}</div>
                         </div>
                       </div>
-                      {selectedYear === mission.year && <div className="w-2 h-2 bg-blue-400 rounded-full"></div>}
+                      {selectedYear === mission.year && <div className="w-2 h-2 bg-blue-300 rounded-full"></div>}
                     </button>
                   ))}
                 </div>
                 {/* Launch Sequence Footer */}
-                <div className="bg-slate-900/50 px-3 py-2 border-t border-slate-700">
-                  <div className="flex items-center justify-center space-x-2 text-xs text-slate-400">
+                <div className="bg-white/5 px-3 py-2 border-t border-white/20">
+                  <div className="flex items-center justify-center space-x-2 text-xs text-white/70">
                     <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
                     <span>SYSTEMS OPERATIONAL</span>
                     <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
@@ -597,26 +679,32 @@ export default function AboutPage() {
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
+
         {/* Team Layout - Conditional Rendering */}
         <div className="relative w-full max-w-6xl mx-auto p-8">
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">BATCH OF {selectedYear}</h2>
             <div className="w-20 md:w-24 h-1 bg-white mx-auto mb-4"></div>
-            <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-2">
+            <p className="text-white/90 text-lg max-w-2xl mx-auto mb-2">
               Navigate through our team using horizontal scroll
             </p>
-            
-          </div>
-          <div
+          </motion.div>
+
+          <motion.div
             ref={cardContainerRef}
             className="relative h-[400px] sm:h-[500px] flex items-center justify-center cursor-grab active:cursor-grabbing"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
           >
-            
             {/* Stacked Cards - Infinite */}
             <div className="relative w-64 h-80 sm:w-96 sm:h-96">
-              {" "}
-              {/* Adjusted size for mobile */}
               {[-3, -2, -1, 0, 1, 2, 3].map((relativeIndex) => {
                 const member = getMemberAtIndex(currentIndex + relativeIndex)
                 return (
@@ -627,12 +715,12 @@ export default function AboutPage() {
                     onClick={() => setCurrentIndex(currentIndex + relativeIndex)}
                   >
                     <CardContent className="p-0 h-full">
-                      <div className="h-full bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 rounded-xl relative overflow-hidden shadow-2xl border border-slate-600/50">
+                      <div className="h-full backdrop-blur-md bg-white/10 hover:bg-white/20 rounded-xl relative overflow-hidden shadow-2xl border border-white/20">
                         {/* Enhanced Background Pattern */}
                         <div className="absolute inset-0 opacity-20">
-                          <div className="absolute top-6 right-6 w-40 h-40 bg-blue-400/10 rounded-full blur-2xl"></div>
-                          <div className="absolute bottom-6 left-6 w-32 h-32 bg-blue-400/10 rounded-full blur-xl"></div>
-                          <div className="absolute top-1/2 left-1/2 w-20 h-20 bg-blue-400/5 rounded-full blur-lg"></div>
+                          <div className="absolute top-6 right-6 w-40 h-40 bg-blue-300/10 rounded-full blur-2xl"></div>
+                          <div className="absolute bottom-6 left-6 w-32 h-32 bg-blue-300/10 rounded-full blur-xl"></div>
+                          <div className="absolute top-1/2 left-1/2 w-20 h-20 bg-blue-300/5 rounded-full blur-lg"></div>
                         </div>
                         {/* Content */}
                         <div className="relative z-10 p-6 sm:p-8 h-full flex flex-col justify-between text-white">
@@ -641,13 +729,13 @@ export default function AboutPage() {
                               <h3 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">{member.name}</h3>
                               <p className="text-blue-300 text-sm sm:text-base font-medium">{member.role}</p>
                               <div className="mt-2 sm:mt-4 flex items-center space-x-2">
-                                <Rocket className="h-3 w-3 sm:h-4 sm:w-4 text-blue-400" />
-                                <span className="text-slate-300 text-xs sm:text-sm">Team Sammard</span>
+                                <Rocket className="h-3 w-3 sm:h-4 sm:w-4 text-blue-300" />
+                                <span className="text-white/80 text-xs sm:text-sm">Team Sammard</span>
                               </div>
                             </div>
                           </div>
                           <div className="flex items-end justify-between mt-4 sm:mt-6">
-                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-blue-400/40 shadow-lg">
+                            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-blue-300/40 shadow-lg">
                               <Image
                                 src={member.image || "/placeholder.svg"}
                                 alt={member.name}
@@ -658,16 +746,18 @@ export default function AboutPage() {
                             </div>
                             {/* LinkedIn Icon */}
                             {member.linkedinUrl && (
-                              <a
+                              <motion.a
                                 href={member.linkedinUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 rounded-full bg-blue-500/20 hover:bg-blue-500/40 transition-colors duration-200"
-                                onClick={(e) => e.stopPropagation()} // Prevent card click when clicking icon
+                                className="p-2 rounded-full backdrop-blur-sm bg-blue-500/20 hover:bg-blue-500/40 transition-colors duration-200"
+                                onClick={(e) => e.stopPropagation()}
                                 aria-label={`Visit ${member.name}'s LinkedIn profile`}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
                               >
                                 <Linkedin className="h-6 w-6 sm:h-8 sm:w-8 text-blue-300" />
-                              </a>
+                              </motion.a>
                             )}
                           </div>
                         </div>
@@ -677,43 +767,75 @@ export default function AboutPage() {
                 )
               })}
             </div>
-          </div>
+          </motion.div>
+
           {/* Enhanced Indicators - Show relative position */}
-          <div className="flex justify-center mt-12 space-x-3">
+          <motion.div
+            className="flex justify-center mt-12 space-x-3"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+          >
             {currentTeam.map((_, index) => {
               const normalizedCurrent = ((currentIndex % currentTeam.length) + currentTeam.length) % currentTeam.length
               return (
-                <button
+                <motion.button
                   key={index}
                   className={`h-3 rounded-full transition-all duration-300 ${
                     index === normalizedCurrent
-                      ? "bg-blue-400 w-8 shadow-lg shadow-blue-400/50"
-                      : "bg-slate-600 w-3 hover:bg-slate-500"
+                      ? "bg-blue-300 w-8 shadow-lg shadow-blue-300/50"
+                      : "bg-white/30 w-3 hover:bg-white/50"
                   }`}
                   onClick={() => setCurrentIndex(index)}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.8 }}
                 />
               )
             })}
-          </div>
+          </motion.div>
+
           {/* Current Member Detailed Info */}
-          <div className="text-center mt-8 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-600/50">
+          <motion.div
+            className="text-center mt-8 backdrop-blur-md bg-white/10 rounded-2xl p-8 shadow-lg border border-white/20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
+          >
             <div className="flex items-center justify-center space-x-2 mb-4">
-              <Rocket className="h-5 w-5 text-blue-400" />
-              <span className="text-slate-400 text-sm font-medium">CURRENT SELECTION</span>
-              <Rocket className="h-5 w-5 text-blue-400 rotate-180" />
+              <Rocket className="h-5 w-5 text-blue-300" />
+              <span className="text-white/70 text-sm font-medium">CURRENT SELECTION</span>
+              <Rocket className="h-5 w-5 text-blue-300 rotate-180" />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-2">{getMemberAtIndex(currentIndex).name}</h3>
-            <p className="text-blue-400 font-semibold text-lg mb-3">{getMemberAtIndex(currentIndex).role}</p>
-            <p className="text-slate-300 text-base leading-relaxed max-w-md mx-auto">
+            <motion.h3
+              className="text-2xl font-bold text-white mb-2"
+              key={`name-${currentIndex}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {getMemberAtIndex(currentIndex).name}
+            </motion.h3>
+            <motion.p
+              className="text-blue-300 font-semibold text-lg mb-3"
+              key={`role-${currentIndex}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+            >
+              {getMemberAtIndex(currentIndex).role}
+            </motion.p>
+            <motion.p
+              className="text-white/90 text-base leading-relaxed max-w-md mx-auto"
+              key={`review-${currentIndex}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+            >
               {getMemberAtIndex(currentIndex).review}
-            </p>
-            <div className="mt-4 text-slate-400 text-sm">
-              
-            </div>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </div>
-      
     </div>
   )
 }

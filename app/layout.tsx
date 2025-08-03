@@ -63,10 +63,10 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
             <div className="flex flex-col min-h-screen bg-[url('/images/main/launch.jpeg')] bg-cover bg-center bg-no-repeat">
               {/* HEADER */}
-              <header className="fixed top-0 left-0 w-full z-50 h-20 bg-black/20 border-b border-white/10">
+              <header className="fixed top-0 left-0 w-full z-50 h-20 bg-black/80 border-b border-white/10">
                 <div className="container flex h-16 items-center justify-between">
                   <Link href="/" className=" flex items-center gap-2">
-                    <img src="teamlogo-real.png" alt="Rocket" className="w-11 h-17 rounded-lg" />
+                    <img src="sammard_logo.png" alt="Rocket" className="relative top-1 w-11 h-17" />
                   </Link>
 
                   <nav className="relative hidden md:flex gap-6 h-full items-center">
@@ -119,7 +119,6 @@ export default function RootLayout({
                     {/* Logo and Slogan */}
                     <div className="space-y-4">
                       <Link href="/" className="flex items-center gap-2">
-                        <Rocket className="h-8 w-8" />
                         <span className="font-bold text-lg">TEAM SAMMARD</span>
                       </Link>
                       <p className="text-sm text-muted-foreground">
@@ -133,7 +132,7 @@ export default function RootLayout({
                       <ul className="space-y-2">
                         {["About", "Projects", "Events", "Timeline","Gallery","Sponsors"].map((page) => (
                           <li key={page}>
-                            <Link href={`/${page.toLowerCase()}`} className="text-sm text-muted-foreground hover:text-foreground">
+                            <Link href={`/${page.toLowerCase()}`} className="text-med text-muted-foreground hover:text-foreground">
                               {page}
                             </Link>
                           </li>
@@ -147,11 +146,13 @@ export default function RootLayout({
                       <ul className="space-y-2">
                         <li className="text-sm text-muted-foreground">Creation Labs, VIT Vellore</li>
                         <li className="text-sm text-muted-foreground">Vellore, Tamil Nadu, India</li>
+                        <br></br>
                         <li>
                           <a href="mailto:teamsammard@gmail.com" className="text-sm text-muted-foreground hover:text-foreground">
                             teamsammard@gmail.com
                           </a>
                         </li>
+                        <li className="text-sm text-muted-foreground">+91 **************</li>
                       </ul>
                     </div>
 

@@ -88,7 +88,7 @@ export default function Home() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/video/blackhole.mp4" type="video/mp4" />
+          <source src="/background.mp4" type="video/mp4" />
           {/* Fallback gradient if video fails to load */}
           <div className="absolute inset-0 bg-gradient-to-r from-sky-900 via-sky-800 to-blue-600" />
         </video>
@@ -110,7 +110,7 @@ export default function Home() {
             <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7, duration: 0.5 }}>
               <b>"</b>
             </motion.span>
-            Give your dream some space to grow
+            <b>Give your dream some space to grow</b>
             <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7, duration: 0.5 }}>
               <b>"</b>
             </motion.span>
@@ -215,10 +215,18 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="mt-7 ml-8 h-[450px] w-[500px] backdrop-blur-md bg-white/5 border border-white/10 rounded-lg mx-4 relative z-10">
-            <RocketModel/>
+          <div className="mt-7 ml-8 h-[450px] w-[200px] backdrop-blur-md bg-white/5 border border-white/10 rounded-lg mx-4 relative z-10">
+          <video
+        src="video/agneya.mp4" // replace with your actual video path
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="h-full w-full object-cover rounded-lg"
+          />
+            
           </div>
-          <div className="mt-7 ml-8 h-[450px] w-[800px] backdrop-blur-md bg-white/5 border border-white/10 rounded-lg mx-4 relative z-10">
+          <div className="mt-7 ml-8 h-[450px] w-[1050px] backdrop-blur-md bg-white/5 border border-white/10 rounded-lg mx-4 relative z-10">
             {/* Content for the right side can go here */}
           </div>
         </motion.div>
