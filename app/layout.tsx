@@ -67,7 +67,7 @@ export default function RootLayout({
           >
             <div className="flex flex-col min-h-screen bg-[url('/images/main/launch.jpeg')] bg-cover bg-center bg-no-repeat">
               {/* HEADER */}
-              <header className="fixed top-0 left-0 w-full z-50 h-20 bg-black/20">
+              <header className="fixed top-0 left-0 w-full z-50 h-20 bg-black/20 backdrop-blur">
                 <div className="container flex h-16 items-center justify-between">
                   <Link href="/" className=" flex items-center gap-2">
                     <img
