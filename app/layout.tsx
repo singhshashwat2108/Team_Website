@@ -1,13 +1,12 @@
 "use client";
-
 import type React from "react";
 import { useEffect, useState } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Inter } from "next/font/google";
+import { Inter } from 'next/font/google';
 import "./globals.css";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import teamlogo from "@/public/teamlogo-real.png";
 
@@ -20,7 +19,6 @@ function SplashScreen({ onFinish }: { onFinish: () => void }) {
     const timer = setTimeout(() => {
       onFinish();
     }, 4000);
-
     return () => clearTimeout(timer);
   }, [onFinish]);
 
@@ -76,7 +74,6 @@ export default function RootLayout({
                       className="w-11 h-17"
                     />
                   </Link>
-
                   <nav className="relative hidden md:flex gap-6 h-full items-center">
                     {[
                       "About",
@@ -89,21 +86,19 @@ export default function RootLayout({
                       <Button
                         key={page}
                         asChild
-                        className="h-full px-4 bg-transparent text-foreground hover:bg-transparent hover:text-primary leading-[1.1rem] pt-[14px]"
+                        className="h-auto px-4 py-2 bg-transparent text-foreground hover:bg-transparent relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-foreground after:transition-all after:duration-300 hover:after:w-full"
                       >
                         <Link
                           href={`/${page.toLowerCase()}`}
-                          className="text-sm font-medium transition-colors"
+                          className="text-sm font-medium transition-colors flex items-center h-full"
                         >
                           {page}
                         </Link>
                       </Button>
                     ))}
                   </nav>
-
                   <div className="flex items-center gap-4">
                     <Button className="hidden md:flex">Contact Us</Button>
-
                     <Sheet>
                       <SheetTrigger asChild>
                         <Button
@@ -128,22 +123,20 @@ export default function RootLayout({
                             <Link
                               key={page}
                               href={`/${page.toLowerCase()}`}
-                              className="text-sm font-medium transition-colors hover:text-primary"
+                              className="text-lg font-medium transition-colors hover:text-primary"
                             >
                               {page}
                             </Link>
                           ))}
-                          <Button>Contact Us</Button>
+                          <Button className="relative top-2" >Contact Us</Button>
                         </div>
                       </SheetContent>
                     </Sheet>
                   </div>
                 </div>
               </header>
-
               {/* MAIN CONTENT */}
               <main className="flex-1 pt-20">{children}</main>
-
               {/* FOOTER */}
               <footer className="border-t bg-background">
                 <div className="container py-8 md:py-12">
@@ -162,7 +155,6 @@ export default function RootLayout({
                         Give your dreams some space to unfold.
                       </p>
                     </div>
-
                     {/* Quick Links - Now in 2 columns */}
                     <div>
                       <h3 className="font-medium mb-4">Quick Links</h3>
@@ -185,7 +177,6 @@ export default function RootLayout({
                         ))}
                       </div>
                     </div>
-
                     {/* Contact */}
                     <div>
                       <h3 className="font-medium mb-4">Contact</h3>
@@ -206,7 +197,6 @@ export default function RootLayout({
                         </li>
                       </ul>
                     </div>
-
                     {/* Social Media */}
                     <div>
                       <h3 className="font-medium mb-4">Follow Us</h3>
@@ -237,23 +227,10 @@ export default function RootLayout({
                             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                           </svg>
                         </a>
-                        {/* Twitter/X
-                        <a
-                          href="#"
-                          className="text-muted-foreground hover:text-foreground"
-                        >
-                          <svg
-                            className="h-5 w-5"
-                            fill="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                          </svg>
-                        </a> */}
+                        {/* Twitter/X                        <a                          href="#"                          className="text-muted-foreground hover:text-foreground"                        >                          <svg                            className="h-5 w-5"                            fill="currentColor"                            viewBox="0 0 24 24"                          >                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />                          </svg>                        </a> */}
                       </div>
                     </div>
                   </div>
-
                   {/* Copyright */}
                   <div className="mt-8 border-t pt-8 flex flex-col md:flex-row justify-between items-center">
                     <p className="text-xs text-muted-foreground">
