@@ -475,32 +475,6 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
-
-      {/* Call to Action */}
-      <section className="py-20 relative z-10">
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Want to Participate?</h2>
-            <p className="text-white/90 max-w-2xl mx-auto mb-8">
-              If you're interested in participating in our workshops or collaborating on events, we'd love to hear from
-              you. Join us in pushing the boundaries of aerospace technology.
-            </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button 
-                size="lg" 
-                className="backdrop-blur-md bg-blue-600/80 hover:bg-blue-600 border border-blue-400/30"
-              >
-                Contact Us
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   )
 }

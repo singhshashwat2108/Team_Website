@@ -575,66 +575,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Timeline Preview */}
-      <section className="py-20 relative z-10">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Journey</h2>
-              <p className="text-white/90 max-w-2xl mx-auto mb-12">
-                From our founding to our latest achievements, explore the Team Sammard timeline.
-              </p>
-            </motion.div>
-          </div>
-          <div className="flex justify-center">
-            <div className="relative border-l border-blue-300 pl-8 py-4 max-w-xl">
-              {[
-                { year: "2023", event: "IREC Competition Finalist" },
-                { year: "2021", event: "First successful high-altitude rocket launch" },
-                { year: "2019", event: "CanSat Competition Top 10" },
-                { year: "2017", event: "Team Sammard Founded" },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="mb-8 relative"
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="absolute -left-10 mt-1.5 h-4 w-4 rounded-full bg-blue-300"></div>
-                  <h3 className="text-xl font-bold mb-1 text-white">{item.year}</h3>
-                  <p className="text-white/80">{item.event}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-          <motion.div
-            className="text-center mt-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <Button
-              variant="outline"
-              size="lg"
-              className="backdrop-blur-md bg-white/10 border-white/30 text-white hover:bg-white/20"
-              asChild
-            >
-              <Link href="/timeline">
-                View Complete Timeline <Clock className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Events Preview */}
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-4 relative z-10">
