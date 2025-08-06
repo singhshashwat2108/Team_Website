@@ -8,6 +8,8 @@ import RocketModel from "@/components/rocket-model"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
+
+
 // Star interface for TypeScript
 interface Star {
   id: number;
@@ -75,6 +77,18 @@ const FallingStars = () => {
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen relative bg-gray-900">
+      {/* Add Arcane Nine Font */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        .arcane-font {
+          font-family: 'Orbitron', monospace;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+          text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+      `}</style>
+
       {/* Falling Stars Background */}
       <FallingStars />
 
@@ -98,20 +112,34 @@ export default function Home() {
         
         <div className="container relative z-20 mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
           <motion.p
-            className="text-xl md:text-2xl lg:text-3xl text-white max-w-4xl mb-8 font-light"
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            className="text-xl md:text-2xl lg:text-3xl text-white max-w-4xl mb-8 arcane-font"
+            initial={{ scale: 0.5, opacity: 0, rotateX: -90 }}
+            animate={{ scale: 1, opacity: 1, rotateX: 0 }}
             transition={{
-              duration: 1.2,
+              duration: 1.5,
               ease: "easeOut",
               delay: 0.5,
             }}
           >
-            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7, duration: 0.5 }}>
+            <motion.span 
+              initial={{ opacity: 0, x: -20 }} 
+              animate={{ opacity: 1, x: 0 }} 
+              transition={{ delay: 1.7, duration: 0.8, ease: "easeOut" }}
+            >
               <b>"</b>
             </motion.span>
-            <b>Give your dream some space to grow</b>
-            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7, duration: 0.5 }}>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 1.2, ease: "easeOut" }}
+            >
+              <b>Give your dream some space to grow</b>
+            </motion.span>
+            <motion.span 
+              initial={{ opacity: 0, x: 20 }} 
+              animate={{ opacity: 1, x: 0 }} 
+              transition={{ delay: 1.7, duration: 0.8, ease: "easeOut" }}
+            >
               <b>"</b>
             </motion.span>
           </motion.p>
@@ -123,7 +151,7 @@ export default function Home() {
             transition={{
               duration: 0.8,
               ease: "easeOut",
-              delay: 2,
+              delay: 2.5,
             }}
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
