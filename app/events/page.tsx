@@ -81,7 +81,7 @@ export default function EventsPage() {
       title: "IREC 2025",
       category: "Competitions",
       date: "June 15-20, 2025",
-      location: "New Mexico, USA",
+      location: "Midland texas , USA",
       description:
         "Intercollegiate Rocket Engineering Competition, the world's largest collegiate rocket engineering competition.",
       image: "/placeholder.svg?height=800&width=1200",

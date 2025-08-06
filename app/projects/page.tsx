@@ -300,16 +300,15 @@ export default function ProjectsPage() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold mb-4 text-white">Icarus X - IREC Competition Rocket</h3>
+              <h3 className="text-2xl font-bold mb-4 text-white">Airavat - IREC Competition Rocket</h3>
               <p className="text-white/90 mb-6">
-                Our flagship rocket designed for the Intercollegiate Rocket Engineering Competition (IREC). The Icarus X
-                features a custom-designed propulsion system, advanced avionics package, and innovative recovery
-                mechanisms.
+                Our flagship rocket designed for the Intercollegiate Rocket Engineering Competition (IREC). Airavat
+                features a custom of the shelf motor, advanced avionics,a scirntific cubesat payload and a dual deployment recover system.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-4">
                   <h4 className="font-bold mb-1 text-white">Height</h4>
-                  <p className="text-white/80">10,500 ft</p>
+                  <p className="text-white/80">10,000 ft</p>
                 </div>
                 <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-4">
                   <h4 className="font-bold mb-1 text-white">Max Speed</h4>
