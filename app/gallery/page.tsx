@@ -1,11 +1,9 @@
-import Gallery from "@/components/Gallery"; 
-import RootLayout from "@/app/layout";
+"use client";
 
-export default function GalleryPage() {
+import GalleryPage from "@/components/Gallery";
+
+export default function Page() {
   return (
-    <main className="min-h-screen bg-black">
-      
-      <Gallery />
-    </main>
+    <GalleryPage />
   );
 }

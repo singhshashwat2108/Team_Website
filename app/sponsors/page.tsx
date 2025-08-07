@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -14,7 +13,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink } from 'lucide-react'
 import { motion } from "framer-motion"
 import FallingStars from "@/components/FallingStars"
 
@@ -125,7 +124,6 @@ export default function SponsorsPage() {
           text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
       `}</style>
-
       {/* Background video */}
       <video
         autoPlay
@@ -136,13 +134,10 @@ export default function SponsorsPage() {
       >
         <source src="/background.mp4" type="video/mp4" />
       </video>
-
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 z-0" />
-
       {/* Stars */}
       <FallingStars />
-
       <main className="relative z-10">
         {/* Sponsors Section */}
         <section className="py-20">
@@ -162,7 +157,6 @@ export default function SponsorsPage() {
                 generous support of our sponsors and partners.
               </p>
             </motion.div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {sponsors.map((sponsor, idx) => (
                 <motion.div
@@ -175,7 +169,7 @@ export default function SponsorsPage() {
                   <Card className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-6 flex flex-col h-full hover:bg-white/20 transition-all duration-300 group">
                     <div className="relative h-48 w-full bg-muted/30 flex items-center justify-center p-6">
                       <Image
-                        src={sponsor.image}
+                        src={sponsor.image || "/placeholder.svg"}
                         alt={sponsor.name}
                         width={200}
                         height={100}
@@ -220,7 +214,6 @@ export default function SponsorsPage() {
             </div>
           </div>
         </section>
-
         {/* Form Section */}
         <section className="py-20">
           <div className="container mx-auto px-4">
@@ -252,7 +245,6 @@ export default function SponsorsPage() {
                       autoComplete="off"
                       style={{ display: "none" }}
                     />
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="contactName">Contact Name *</Label>
@@ -278,7 +270,6 @@ export default function SponsorsPage() {
                         />
                       </div>
                     </div>
-
                     <div className="space-y-2">
                       <Label htmlFor="companyName">Company Name *</Label>
                       <Input
@@ -290,7 +281,6 @@ export default function SponsorsPage() {
                         required
                       />
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="companyWebsite">Company Website *</Label>
@@ -316,7 +306,6 @@ export default function SponsorsPage() {
                         />
                       </div>
                     </div>
-
                     <div className="space-y-2">
                       <Label htmlFor="message">Message</Label>
                       <Textarea
@@ -328,7 +317,6 @@ export default function SponsorsPage() {
                         }
                       />
                     </div>
-
                     <Button
                       type="submit"
                       size="lg"

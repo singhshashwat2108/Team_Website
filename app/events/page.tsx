@@ -181,50 +181,7 @@ export default function EventsPage() {
       {/* Falling Stars Background */}
       <FallingStars />
 
-      {/* Hero Section */}
-      <section className="relative h-[60vh] w-full overflow-hidden z-10">
-        {/* Video Background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/video/background.mp4" type="video/mp4" />
-          {/* Fallback gradient if video fails to load */}
-          <div className="absolute inset-0 bg-gradient-to-r from-sky-900 via-sky-800 to-blue-600" />
-        </video>
-        
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40" />
-        
-        <div className="absolute inset-0 flex items-center justify-center relative z-20">
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <motion.h1 
-              className="text-4xl md:text-6xl font-bold text-white mb-4"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              Events
-            </motion.h1>
-            <motion.p
-              className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              Join us on our journey through competitions, workshops, and outreach programs
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      
 
       {/* Upcoming Events */}
       <section className="py-20 relative z-10">
@@ -236,7 +193,7 @@ export default function EventsPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Upcoming Events</h2>
+            <h2 className="text-4xl md:text-4xl font-bold mb-4 text-white">Upcoming Events</h2>
             <p className="text-white/90 max-w-2xl mx-auto">
               Discover our upcoming competitions, workshops, and community engagement activities
             </p>
