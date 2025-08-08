@@ -1,8 +1,12 @@
 "use client";
+
+import React from 'react';
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Filter, Calendar, Users, Rocket, Award } from 'lucide-react';
+import { Button } from "@/components/ui/button"; // Imported from shadcn/ui
+import FallingStars from "@/components/FallingStars"; // Imported from components
 
 // Type for GalleryItem
 type GalleryItem = {
@@ -87,98 +91,6 @@ const galleryData: GalleryItem[] = [
   }
 ];
 
-// Button Component (simplified version)
-const Button = ({
-  children,
-  variant = "default",
-  size = "default",
-  className = "",
-  onClick,
-  ...props
-}: {
-  children: React.ReactNode;
-  variant?: "default" | "outline";
-  size?: "default" | "sm";
-  className?: string;
-  onClick?: () => void;
-}) => {
-  const baseClasses = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
-
-  const variants = {
-    default: "bg-blue-600 text-white hover:bg-blue-700",
-    outline: "border border-gray-300 bg-transparent hover:bg-gray-50 text-gray-700"
-  };
-
-  const sizes = {
-    default: "h-10 px-4 py-2",
-    sm: "h-9 rounded-md px-3"
-  };
-
-  return (
-    <button
-      className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
-      onClick={onClick}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
-
-// Falling Stars Component (Copied from about.tsx)
-const FallingStars = () => {
-  const [stars, setStars] = useState<{ id: number, left: number, animationDuration: number, opacity: number, size: number }[]>([]);
-
-  useEffect(() => {
-    const generateStars = () => {
-      const newStars = [];
-      for (let i = 0; i < 50; i++) {
-        newStars.push({
-          id: i,
-          left: Math.random() * 100,
-          animationDuration: Math.random() * 3 + 2,
-          opacity: Math.random() * 0.8 + 0.2,
-          size: Math.random() * 3 + 1,
-        });
-      }
-      setStars(newStars);
-    };
-    generateStars();
-  }, []);
-
-  return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      {stars.map((star) => (
-        <div
-          key={star.id}
-          className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
-          style={{
-            left: `${star.left}%`,
-            top: '-10px',
-            opacity: star.opacity,
-            width: `${star.size}px`,
-            height: `${star.size}px`,
-            animation: `fall ${star.animationDuration}s linear infinite`,
-            animationDelay: `${Math.random() * 2}s`,
-          }}
-        />
-      ))}
-      <style jsx>{`
-        @keyframes fall {
-          0% {
-            transform: translateY(-10px) rotate(0deg);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(100vh) rotate(360deg);
-            opacity: 0;
-          }
-        }
-      `}</style>
-    </div>
-  );
-};
-
 const Gallery = () => {
   const [selectedImg, setSelectedImg] = useState<number>(0);
   const [imgPop, setImgPop] = useState<boolean>(false);
@@ -248,7 +160,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="relative">
       {/* Add Orbitron Font and global animations */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
@@ -257,14 +169,12 @@ const Gallery = () => {
           font-family: 'Orbitron', monospace;
           font-weight: 700;
           letter-spacing: 0.05em;
-          text-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+          color: white; /* Changed to white */
         }
-
         .animate-gradient-shift {
           background-size: 400% 400%;
           animation: gradientShift 20s ease infinite;
         }
-
         @keyframes gradientShift {
           0% {
             background-position: 0% 50%;
@@ -276,7 +186,6 @@ const Gallery = () => {
             background-position: 0% 50%;
           }
         }
-
         @keyframes fall {
           0% {
             transform: translateY(-10px) rotate(0deg);
@@ -287,18 +196,13 @@ const Gallery = () => {
             opacity: 0;
           }
         }
-
         body {
           overflow-x: hidden;
         }
       `}</style>
-
-      {/* Animated Background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-black animate-gradient-shift z-0" />
       
       {/* Falling Stars Background */}
       <FallingStars />
-
       {/* Content */}
       <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-20">
         <div className="max-w-7xl mx-auto">
@@ -337,8 +241,8 @@ const Gallery = () => {
                     size="sm"
                     onClick={() => setSelectedYear(year)}
                     className={selectedYear === year
-                       ? "bg-blue-600 hover:bg-blue-700 text-white"
-                       : "bg-white/10 border-white/30 text-white hover:bg-white/20"
+                      ? "bg-blue-600 hover:bg-blue-700 text-white"
+                      : "bg-white/10 border-white/30 text-white hover:bg-white/20"
                     }
                   >
                     {year}
@@ -360,8 +264,8 @@ const Gallery = () => {
                     size="sm"
                     onClick={() => setSelectedCategory(category)}
                     className={selectedCategory === category
-                       ? "bg-blue-600 hover:bg-blue-700 text-white"
-                       : "bg-white/10 border-white/30 text-white hover:bg-white/20"
+                      ? "bg-blue-600 hover:bg-blue-700 text-white"
+                      : "bg-white/10 border-white/30 text-white hover:bg-white/20"
                     }
                   >
                     {category}
@@ -507,6 +411,12 @@ const Gallery = () => {
   );
 };
 
-export default function GalleryPage() {
-  return <Gallery />;
-}
+const GalleryPage = () => {
+  return (
+    <div className="relative">
+      <Gallery/>
+    </div>
+  );
+};
+
+export default GalleryPage;

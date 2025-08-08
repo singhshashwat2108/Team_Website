@@ -269,10 +269,10 @@ const Timeline = () => {
 
   const amplitude = 100; // Reduced from 120 to give more space
   const frequency = 0.006;
-  const marginLeft = 420; // Increased from 320 to ensure cards don't overlap circles (card width is 384px)
-  const marginRight = 100; // Increased from 80 for better spacing
+  const marginLeft = 450; // Reduced from 420 to shift cards left
+  const marginRight = 120; // Increased from 100 to shift cards left
   const yGap = 400;
-  const yBase = 300;
+  const yBase = 400;
   const totalHeight = timelineData.length * yGap + yBase;
 
   const generateWavePath = () => {
@@ -294,17 +294,17 @@ const Timeline = () => {
 
   const getResponsiveMargins = () => {
     if (containerWidth < 768) {
-      return { left: 300, right: 80 }; // Mobile - smaller margins due to smaller cards
+      return { left: 320, right: 100 }; // Mobile - increased left margin
     } else if (containerWidth < 1024) {
-      return { left: 380, right: 90 }; // Tablet
+      return { left: 400, right: 110 }; // Tablet - increased left margin
     }
-    return { left: 420, right: 100 }; // Desktop - ensure left margin > card width
+    return { left: 450, right: 120 }; // Desktop - increased left margin
   };
 
   const margins = getResponsiveMargins();
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative">
       {/* Add Orbitron Font */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
@@ -349,15 +349,12 @@ const Timeline = () => {
         }
       `}</style>
 
-      {/* Animated Background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-black animate-gradient-shift z-0" />
-      
       {/* Falling Stars Background */}
       <FallingStars />
 
       <div
         ref={containerRef}
-        className="relative z-10 px-4 md:px-8 lg:px-16 xl:px-24" // Increased padding for larger screens
+        className="relative z-10 px-8 md:px-12 lg:px-20 xl:px-32" // Increased padding for larger screens
         style={{ minHeight: `${totalHeight + 800}px` }}
       >
         {/* Hero Section */}
