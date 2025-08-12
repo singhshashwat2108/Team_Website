@@ -512,25 +512,33 @@ export default function AboutPage() {
       {/* Falling Stars Background */}
       <FallingStars />
 
-      {/* Mission & Vision */}
-      <section className="py-12 sm:py-16 lg:py-20 relative z-10">
-        <div className="container mx-auto px-4">
+      {/* Mission & Vision with Background Image */}
+      <section className="pt-0 pb-8 sm:pt-2 sm:pb-12 lg:pt-4 lg:pb-16 relative z-10">
+        {/* Background Image */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          <img
+            src="/img/about/team_spaceport.jpg"
+            alt="Team Sammard at Spaceport America Cup"
+            className="w-full h-full object-cover object-center opacity-60"
+            style={{ filter: 'blur(1px) brightness(0.7)' }}
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              className="relative"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-white">Our Mission</h2>
-              <p className="text-white/90 mb-4 sm:mb-6 text-sm sm:text-base">
-                Team Sammard is dedicated to pushing the boundaries of amateur rocketry and aerospace innovations in India.
-                Our mission is to enhance the technical and professional growth of our members through hands-on, project-based learning. We design and build high-performance launch vehicles for intercollegiate rocketry competitions, while also developing propulsion systems, avionics hardware and software, and other advanced aerospace technologies.
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg">Our Mission</h2>
+              <p className="text-white/90 mb-4 sm:mb-6 text-sm sm:text-base drop-shadow">
+                Established in 2017, Team Sammard is the official rocketry team of Vellore Institute of Technology, Vellore campus. Committed to advancing student-led aerospace innovation, the team actively participates in prestigious International competitions, including NASA CanSat, the Intercollegiate Rocket Engineering Competition (IREC), and the national-level IN-SPACe CanSat competition. Beyond these competitive endeavors, In addition to its competitive pursuits, Team Sammard actively organizes events aimed at inspiring and cultivating aerospace culture nationwide.
               </p>
-              <p className="text-white/90 text-sm sm:text-base">
-                Based at VIT Vellore's Innovation Creation Lab, we foster a collaborative environment where students can apply
-                theoretical knowledge to practical aerospace challenges, preparing the next generation of aerospace
-                engineers.
+              <p className="text-white/90 text-sm sm:text-base drop-shadow">
+                Operating from the Innovation Creation Lab at VIT Vellore, the team provides a dynamic and collaborative environment where students bridge the gap between complex theoretical concepts and real-world aerospace applications. Members engage in research, design, and fabrication, gaining hands-on experience with advanced rocketry systems while developing essential problem-solving, leadership, and teamwork skills. Through this holistic approach, Team Sammard aims to nurture the next generation of aerospace engineers and innovators.
               </p>
             </motion.div>
           </div>
