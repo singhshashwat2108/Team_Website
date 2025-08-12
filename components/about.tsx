@@ -637,13 +637,6 @@ export default function AboutPage() {
                   ))}
                 </div>
                 {/* Launch Sequence Footer */}
-                <div className="bg-slate-900/50 px-3 py-2 border-t border-slate-700">
-                  <div className="flex items-center justify-center space-x-2 text-xs text-slate-400">
-                    <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
-                    <span>SYSTEMS OPERATIONAL</span>
-                    <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
-                  </div>
-                </div>
               </div>
             )}
           </div>

@@ -114,7 +114,7 @@ export default function SponsorsPage() {
   ]
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white relative">
+    <div className="flex flex-col min-h-screen relative bg-gray-900">
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
         .arcane-font {
@@ -124,19 +124,7 @@ export default function SponsorsPage() {
           text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
       `}</style>
-      {/* Background video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src="/background.mp4" type="video/mp4" />
-      </video>
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 z-0" />
-      {/* Stars */}
+      {/* Falling Stars Background */}
       <FallingStars />
       <main className="relative z-10">
         {/* Sponsors Section */}
@@ -149,7 +137,7 @@ export default function SponsorsPage() {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 arcane-font">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 arcane-font text-white">
                 Thank You to Our Sponsors
               </h2>
               <p className="text-white/90 max-w-2xl mx-auto">
@@ -177,7 +165,7 @@ export default function SponsorsPage() {
                       />
                     </div>
                     <CardHeader>
-                      <CardTitle className="group-hover:text-primary transition-colors duration-300">
+                      <CardTitle className="group-hover:text-primary transition-colors duration-300 text-white">
                         {sponsor.name}
                       </CardTitle>
                       <CardDescription className="mt-1">
@@ -224,13 +212,13 @@ export default function SponsorsPage() {
               viewport={{ once: true }}
               className="max-w-2xl mx-auto"
             >
-              <Card className="backdrop-blur-md bg-white/10 border border-white/20">
+              <Card className="backdrop-blur-md bg-white/10 border border-white/50">
                 <CardHeader className="text-center">
-                  <CardTitle className="text-3xl font-bold arcane-font">
+                  <CardTitle className="text-5xl font-bold arcane-font text-white">
                     Become a Sponsor
                   </CardTitle>
                   <CardDescription className="text-white/80 text-lg">
-                    Join our mission to push the boundaries of collegiate aerospace engineering.
+                    Join our mission to push the boundaries of aerospace engineering.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -247,7 +235,7 @@ export default function SponsorsPage() {
                     />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="contactName">Contact Name *</Label>
+                        <Label htmlFor="contactName" className="text-white">Contact Name *</Label>
                         <Input
                           id="contactName"
                           value={formData.contactName}
@@ -255,10 +243,11 @@ export default function SponsorsPage() {
                             handleInputChange("contactName", e.target.value)
                           }
                           required
+                          className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email">Email *</Label>
+                        <Label htmlFor="email" className="text-white">Email *</Label>
                         <Input
                           id="email"
                           type="email"
@@ -267,11 +256,12 @@ export default function SponsorsPage() {
                             handleInputChange("email", e.target.value)
                           }
                           required
+                          className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="companyName">Company Name *</Label>
+                      <Label htmlFor="companyName" className="text-white">Company Name *</Label>
                       <Input
                         id="companyName"
                         value={formData.companyName}
@@ -279,11 +269,12 @@ export default function SponsorsPage() {
                           handleInputChange("companyName", e.target.value)
                         }
                         required
+                        className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                       />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="companyWebsite">Company Website *</Label>
+                        <Label htmlFor="companyWebsite" className="text-white">Company Website *</Label>
                         <Input
                           id="companyWebsite"
                           type="url"
@@ -292,10 +283,11 @@ export default function SponsorsPage() {
                             handleInputChange("companyWebsite", e.target.value)
                           }
                           required
+                          className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="phone">Phone</Label>
+                        <Label htmlFor="phone" className="text-white">Phone</Label>
                         <Input
                           id="phone"
                           type="tel"
@@ -303,14 +295,16 @@ export default function SponsorsPage() {
                           onChange={(e) =>
                             handleInputChange("phone", e.target.value)
                           }
+                          className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="message">Message</Label>
+                      <Label htmlFor="message" className="text-white">Message *</Label>
                       <Textarea
                         id="message"
-                        className="min-h-[120px]"
+                        required
+                        className="min-h-[120px] bg-white/10 border-white/30 text-white placeholder:text-white/50"
                         value={formData.message}
                         onChange={(e) =>
                           handleInputChange("message", e.target.value)

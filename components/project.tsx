@@ -99,16 +99,16 @@ export default function ProjectsPage() {
       icon: <Rocket className="h-6 w-6" />,
     },
     {
-      title: "Phoenix CanSat",
+      title: "CanSat",
       category: "CanSat",
       year: "2022",
       description:
-        "Miniature satellite system designed to fit inside a soda can, featuring environmental sensors and a controlled descent system.",
+        "Miniature satellite system designed to fit inside a rocket, featuring environmental sensors and a controlled descent system.",
       image: "/placeholder.svg?height=800&width=1200",
       icon: <Satellite className="h-6 w-6" />,
     },
     {
-      title: "Athena Avionics",
+      title: "Avionics",
       category: "Avionics",
       year: "2023",
       description:
@@ -125,16 +125,16 @@ export default function ProjectsPage() {
       icon: <Rocket className="h-6 w-6" />,
     },
     {
-      title: "Propulsion Optimization",
+      title: "Propulsion System",
       category: "Research",
       year: "2022",
       description:
-        "Research project focused on optimizing solid rocket motor performance for collegiate rocketry applications.",
+        "Research project focused on making solid rocket motor for collegiate rocketry applications.",
       image: "/placeholder.svg?height=800&width=1200",
       icon: <Wrench className="h-6 w-6" />,
     },
     {
-      title: "Helios CanSat",
+      title: "CanSat",
       category: "CanSat",
       year: "2021",
       description: "CanSat design featuring a glider deployment system for extended data collection during descent.",
@@ -151,7 +151,7 @@ export default function ProjectsPage() {
       icon: <Cpu className="h-6 w-6" />,
     },
     {
-      title: "Composite Materials Study",
+      title: "In-house layup research",
       category: "Research",
       year: "2021",
       description:
@@ -200,9 +200,9 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">Our Projects</h1>
+            <h1 className="text-4xl md:text-7xl font-bold mb-6 text-white">Our Projects</h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
-              Explore our innovative aerospace projects, from high-altitude rockets to satellite systems.
+              Explore our innovative aerospace projects, from rockets to satellites.
             </p>
           </motion.div>
         </div>
@@ -328,7 +328,7 @@ export default function ProjectsPage() {
               <h3 className="text-2xl font-bold mb-4 text-white">Airavat - IREC Competition Rocket</h3>
               <p className="text-white/90 mb-6">
                 Our flagship rocket designed for the Intercollegiate Rocket Engineering Competition (IREC). Airavat
-                features a custom off-the-shelf motor, advanced avionics, a scientific cubesat payload and a dual deployment recovery system.
+                features a comercial off-the-shelf motor, advanced avionics, a scientific cubesat payload and a dual deployment recovery system.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-4">
@@ -345,7 +345,7 @@ export default function ProjectsPage() {
                 </div>
                 <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-4">
                   <h4 className="font-bold mb-1 text-white">Weight</h4>
-                  <p className="text-white/80">15 kg</p>
+                  <p className="text-white/80">25 kg</p>
                 </div>
               </div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

@@ -16,7 +16,7 @@ interface RocketData {
   specifications: {
     motorModel: string;
     bodyMaterial: string;
-    maxThrust: string;
+    AvgThrust: string;
     designApogee: string;
     length: string;
     diameter: string;
@@ -35,8 +35,8 @@ const rocketsData: RocketData[] = [
     videoSrc: "/video/airavat.mp4",
     specifications: {
       motorModel: "M1845-NT",
-      bodyMaterial: "Carbon Fiber",
-      maxThrust: "1150N",
+      bodyMaterial: "Fiber Glass",
+      AvgThrust: "1875 newtons",
       designApogee: "10,000ft",
       length: "3.2m",
       diameter: "15cm",
@@ -53,7 +53,7 @@ const rocketsData: RocketData[] = [
     specifications: {
       motorModel: "M1845-NT",
       bodyMaterial: "Fiberglass",
-      maxThrust: "1378N",
+      AvgThrust: "1875 newtons",
       designApogee: "10,000ft",
       length: "4.1m",
       diameter: "18cm",
@@ -64,37 +64,37 @@ const rocketsData: RocketData[] = [
   },
   {
     id: 3,
-    name: "Pinaka",
+    name: "Vajra",
     description: "Experimental rocket focusing on aerodynamic efficiency and stability.",
     videoSrc: "/video/pinaka.mp4",
     specifications: {
       motorModel: "-",
-      bodyMaterial: "Aluminum",
-      maxThrust: "550N",
-      designApogee: "30,000ft",
+      bodyMaterial: "FiberGlass",
+      AvgThrust: "-",
+      designApogee: "10,000ft",
       length: "2.8m",
       diameter: "12cm",
       weight: "18kg",
       dryWeight: "13kg"
     },
-    status: "Concept"
+    status: "Launched"
   },
   {
     id: 4,
-    name: "Vajra",
+    name: "Pinaka",
     description: "Heavy-lift rocket designed for satellite deployment missions.",
     videoSrc: "/video/prithvi.mp4",
     specifications: {
       motorModel: "N2000R",
       bodyMaterial: "Carbon Fiber",
-      maxThrust: "2000N",
-      designApogee: "10,000ft",
+      AvgThrust: "2000N",
+      designApogee: "30,000ft",
       length: "5.2m",
       diameter: "22cm",
       weight: "45kg",
       dryWeight: "32kg"
     },
-    status: "Launched"
+    status: "Concept"
   }
 ];
 
@@ -205,8 +205,8 @@ const RocketCarousel = () => {
                       <div className="text-blue-300 font-semibold">{currentRocket.specifications.bodyMaterial}</div>
                     </div>
                     <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-3">
-                      <div className="text-white/70 text-sm mb-1">Max Thrust</div>
-                      <div className="text-blue-300 font-semibold">{currentRocket.specifications.maxThrust}</div>
+                      <div className="text-white/70 text-sm mb-1">AvgThrust</div>
+                      <div className="text-blue-300 font-semibold">{currentRocket.specifications.AvgThrust}</div>
                     </div>
                     <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-3">
                       <div className="text-white/70 text-sm mb-1">Design Apogee</div>
