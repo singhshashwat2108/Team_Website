@@ -85,7 +85,7 @@ export default function EventsPage() {
       description:
         "Intercollegiate Rocket Engineering Competition, the world's largest collegiate rocket engineering competition.",
       image: "/placeholder.svg?height=800&width=1200",
-      url: "https://example.com/irec",
+      url: "https://www.herox.com/IREC2025",
     },
     {
       title: "CanSat Competition 2025",
@@ -95,7 +95,7 @@ export default function EventsPage() {
       description:
         "Design-Build-Fly competition for small satellite systems, challenging teams to fit all subsystems into a soda can-sized container.",
       image: "/placeholder.svg?height=800&width=1200",
-      url: "https://example.com/cansat",
+      url: "https://cansatcompetition.com/",
     },
     {
       title: "Aerospace Workshop Series",
@@ -127,7 +127,7 @@ export default function EventsPage() {
       location: "New Mexico, USA",
       description: "Team Sammard placed in the top 10 at the Intercollegiate Rocket Engineering Competition.",
       image: "/placeholder.svg?height=800&width=1200",
-      result: "Top 10 Finish",
+      result: "-",
     },
     {
       title: "InSpace CanSat 2024",
@@ -136,7 +136,7 @@ export default function EventsPage() {
       location: "Bangalore, India",
       description: "National-level CanSat competition where Team Sammard secured 2nd place.",
       image: "/placeholder.svg?height=800&width=1200",
-      result: "2nd Place",
+      result: "-",
     },
     {
       title: "Rocket Propulsion Workshop",
@@ -193,7 +193,7 @@ export default function EventsPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-4xl font-bold mb-4 text-white">Upcoming Events</h2>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">Upcoming Events</h2>
             <p className="text-white/90 max-w-2xl mx-auto">
               Discover our upcoming competitions, workshops, and community engagement activities
             </p>
@@ -297,7 +297,7 @@ export default function EventsPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Featured Event</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Featured Event</h2>
           </motion.div>
           
           <motion.div
@@ -360,7 +360,7 @@ export default function EventsPage() {
                     className="backdrop-blur-md bg-blue-600/80 hover:bg-blue-600 border border-blue-400/30"
                     asChild
                   >
-                    <a href="https://example.com/irec" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.herox.com/IREC2025" target="_blank" rel="noopener noreferrer">
                       Official Website <ExternalLink className="ml-2 h-4 w-4" />
                     </a>
                   </Button>
@@ -381,7 +381,7 @@ export default function EventsPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Past Events</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Past Events</h2>
             <p className="text-white/90 max-w-2xl mx-auto">
               Celebrating our achievements and milestones in aerospace competitions and community engagement
             </p>

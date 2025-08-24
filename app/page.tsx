@@ -34,11 +34,10 @@ return (
       <video
         autoPlay
         muted
-        loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/background.mp4" type="video/mp4" />
+        <source src="/Background.mp4" type="video/mp4" />
         {/* Fallback gradient if video fails to load */}
         <div className="absolute inset-0 bg-gradient-to-r from-sky-900 via-sky-800 to-blue-600" />
       </video>
@@ -119,16 +118,16 @@ return (
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Who We Are</h2>
-            <p className="text-white/90 mb-6">
+            <h2 className="ml-6 text-3xl md:text-4xl font-bold mb-6 text-white">Who We Are</h2>
+            <p className="ml-6 text-white/90 mb-6">
               Team Sammard is a student based aerospace team dedicated to revolutionizing space technology in india through innovation, research and development. We focus on developing and designing high power sounding rockets, payloads and cannister satelites.
             </p>
-            <p className="text-white/90 text-sm sm:text-base">
+            <p className="ml-6 text-white/90 text-sm sm:text-base">
               Based at VIT Vellore's Innovation Creation Lab, we foster a collaborative environment where students can apply
               theoretical knowledge to practical aerospace challenges, preparing the next generation of aerospace
               engineers.
             </p>
-            <Button className="backdrop-blur-md bg-blue-600/80 hover:bg-blue-600 border border-blue-400/30" asChild>
+            <Button className="mt-6 ml-6 backdrop-blur-md bg-blue-600/80 hover:bg-blue-600 border border-blue-400/30" asChild>
               <Link href="/about" className="flex items-center whitespace-nowrap">
                 Learn More About Our Team <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
@@ -160,10 +159,7 @@ return (
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Rocket Fleet</h2>
-          <p className="text-white/90 max-w-2xl mx-auto">
-            Explore our collection of rockets, each designed for specific missions and competitions.
-          </p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Our Rocket Fleet</h2>
         </motion.div>
       </div>
       <motion.div
@@ -185,7 +181,7 @@ return (
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Featured Projects</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Featured Projects</h2>
             <p className="text-white/90 max-w-2xl mx-auto mb-12">
               From high-altitude rockets to satellite systems, explore our innovative aerospace projects.
             </p>
@@ -200,12 +196,12 @@ return (
             },
             {
               title: "CanSat Mission",
-              description: "Miniature satellite system designed to fit inside a soda can.",
+              description: "Miniature satellite system designed to carry out scientific experiments.",
               icon: <Sparkles className="h-10 w-10 text-blue-200" />,
             },
             {
               title: "Propulsion Research",
-              description: "Cutting-edge research on rocket propulsion systems.",
+              description: "Cutting-edge research and development of rocket propulsion systems.",
               icon: <Award className="h-10 w-10 text-blue-400" />,
             },
           ].map((project, index) => (
@@ -251,76 +247,77 @@ return (
       </div>
     </section>
     {/* Events Preview */}
-    <section className="py-20 relative z-10">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Upcoming Events</h2>
-            <p className="text-white/90 max-w-2xl mx-auto mb-12">Join us at these upcoming competitions and events.</p>
-          </motion.div>
+   {/* Events Preview */}
+<section className="py-20 relative z-10">
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center mb-12">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Upcoming Events</h2>
+        <p className="text-white/90 max-w-2xl mx-auto mb-12">Join us at these upcoming competitions and events.</p>
+      </motion.div>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+    {[
+      {
+        title: "IREC 2025",
+        date: "June 2025",
+        location: "New Mexico, USA",
+        description: "Intercollegiate Rocket Engineering Competition",
+      },
+      {
+        title: "CanSat Competition",
+        date: "April 2025",
+        location: "Texas, USA",
+        description: "Design-Build-Fly competition for small satellite systems",
+      },
+    ].map((event, index) => (
+      <motion.div
+        key={index}
+        className="backdrop-blur-md bg-white/10 hover:bg-white/20 transition-colors border border-white/20 rounded-lg p-6 flex flex-col"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        viewport={{ once: true }}
+        whileHover={{ y: -5 }}
+      >
+        <div className="flex items-start gap-4">
+          <Calendar className="h-10 w-10 text-blue-300 flex-shrink-0" />
+          <div>
+            <h3 className="text-xl font-bold mb-1 text-white">{event.title}</h3>
+            <p className="text-sm text-white/70 mb-2">
+              {event.date} • {event.location}
+            </p>
+            <p className="text-white/80">{event.description}</p>
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {[
-            {
-              title: "IREC 2025",
-              date: "June 2025",
-              location: "New Mexico, USA",
-              description: "Intercollegiate Rocket Engineering Competition",
-            },
-            {
-              title: "CanSat Competition",
-              date: "April 2025",
-              location: "Texas, USA",
-              description: "Design-Build-Fly competition for small satellite systems",
-            },
-          ].map((event, index) => (
-            <motion.div
-              key={index}
-              className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-6"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-            >
-              <div className="flex items-start gap-4">
-                <Calendar className="h-10 w-10 text-blue-300 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-bold mb-1 text-white">{event.title}</h3>
-                  <p className="text-sm text-white/70 mb-2">
-                    {event.date} • {event.location}
-                  </p>
-                  <p className="text-white/80">{event.description}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <Button
-            variant="outline"
-            size="lg"
-            className="backdrop-blur-md bg-white/10 border-white/30 text-white hover:bg-white/20"
-            asChild
-          >
-            <Link href="/events" className="flex items-center whitespace-nowrap">
-              View All Events <Calendar className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-        </motion.div>
-      </div>
-    </section>
+      </motion.div>
+    ))}
+    </div>
+    <motion.div
+      className="text-center mt-12"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+      viewport={{ once: true }}
+    >
+      <Button
+        variant="outline"
+        size="lg"
+        className="backdrop-blur-md bg-white/10 border-white/30 text-white hover:bg-white/20"
+        asChild
+      >
+        <Link href="/events" className="flex items-center whitespace-nowrap">
+          View All Events <Calendar className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
+    </motion.div>
+  </div>
+</section>
     {/* Sponsors Preview */}
     <section className="py-20 relative z-10">
       <div className="container mx-auto px-4 relative z-10">

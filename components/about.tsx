@@ -268,7 +268,7 @@ export default function AboutPage() {
         review: "Prithvi leads Team Sammard with dedication and expertise in aerospace engineering and innovation.",
       },
       {
-        name: "Jermy Kanniyakonil Varkey",
+        name: "Jermy K Varkey",
         role: "Head of Operations",
         image: "/placeholder.svg?height=200&width=200",
         linkedinUrl: "https://www.linkedin.com/in/jermykanniyakonilvarkey",
@@ -513,7 +513,7 @@ export default function AboutPage() {
       <FallingStars />
 
       {/* Mission & Vision with Background Image */}
-      <section className="pt-0 pb-8 sm:pt-2 sm:pb-12 lg:pt-4 lg:pb-16 relative z-10">
+  <section className="pt-0 pb-8 sm:pt-2 sm:pb-12 lg:pt-4 lg:pb-16 min-h-screen relative z-10">
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full z-0">
           <img
@@ -525,19 +525,19 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-black/40" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="flex justify-center items-center">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative text-center max-w-3xl mx-auto"
             >
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg">Our Mission</h2>
-              <p className="text-white/90 mb-4 sm:mb-6 text-sm sm:text-base drop-shadow">
+              <p className="text-white/90 mb-4 sm:mb-6 text-base sm:text-lg drop-shadow">
                 Established in 2017, Team Sammard is the official rocketry team of Vellore Institute of Technology, Vellore campus. Committed to advancing student-led aerospace innovation, the team actively participates in prestigious International competitions, including NASA CanSat, the Intercollegiate Rocket Engineering Competition (IREC), and the national-level IN-SPACe CanSat competition. Beyond these competitive endeavors, In addition to its competitive pursuits, Team Sammard actively organizes events aimed at inspiring and cultivating aerospace culture nationwide.
               </p>
-              <p className="text-white/90 text-sm sm:text-base drop-shadow">
+              <p className="text-white/90 text-base sm:text-lg drop-shadow">
                 Operating from the Innovation Creation Lab at VIT Vellore, the team provides a dynamic and collaborative environment where students bridge the gap between complex theoretical concepts and real-world aerospace applications. Members engage in research, design, and fabrication, gaining hands-on experience with advanced rocketry systems while developing essential problem-solving, leadership, and teamwork skills. Through this holistic approach, Team Sammard aims to nurture the next generation of aerospace engineers and innovators.
               </p>
             </motion.div>
@@ -556,8 +556,7 @@ export default function AboutPage() {
         >
           <h2 className="text-4xl font-bold mb-8">Our Legacy</h2>
           <p className="text-xl leading-relaxed text-white/90 mb-6">
-            Over the years, our organization has been led by exceptional individuals who have shaped our mission and
-            values. Each board has brought unique perspectives and achievements that continue to inspire our community.
+            Over the years, Team Sammard has been led by exceptional individuals whose dedication and insight have shaped our mission and values. Each board has brought unique perspectives and accomplishments that continue to inspire our members.
           </p>
         </motion.div>
       </section>
@@ -645,13 +644,6 @@ export default function AboutPage() {
                   ))}
                 </div>
                 {/* Launch Sequence Footer */}
-                <div className="bg-slate-900/50 px-3 py-2 border-t border-slate-700">
-                  <div className="flex items-center justify-center space-x-2 text-xs text-slate-400">
-                    <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
-                    <span>SYSTEMS OPERATIONAL</span>
-                    <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
-                  </div>
-                </div>
               </div>
             )}
           </div>
@@ -679,7 +671,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             {/* Stacked Cards - Infinite */}
-            <div className="relative w-72 h-[420px] sm:w-80 sm:h-[520px]">
+            <div className="relative w-64 h-80 sm:w-72 sm:h-96">
               {[-3, -2, -1, 0, 1, 2, 3].map((relativeIndex) => {
                 const member = getMemberAtIndex(currentIndex + relativeIndex)
                 return (
@@ -701,7 +693,7 @@ export default function AboutPage() {
                         <div className="relative z-10 h-full flex flex-col text-white">
                           {/* Large rectangular image at top with thick border */}
                           <div className="p-2">
-                            <div className="relative h-72 sm:h-80 w-full overflow-hidden rounded-lg border-4 border-blue-400/60">
+                            <div className="relative h-56 sm:h-64 w-full overflow-hidden rounded-lg border-4 border-blue-400/60">
                               <Image
                                 src={member.image || "/placeholder.svg"}
                                 alt={member.name}
@@ -716,9 +708,10 @@ export default function AboutPage() {
                             <div className="text-center mb-2">
                               <h3 className="text-lg sm:text-xl font-bold mb-1">{member.name}</h3>
                               <p className="text-blue-300 text-sm font-medium">{member.role}</p>
+                              <p className="text-slate-300 text-xs">{member.position}</p>
                             </div>
                             {/* Domain Logo and LinkedIn stacked vertically */}
-                            <div className="flex flex-col items-center gap-4 mb-2">
+                            <div className="flex flex-col items-center gap-3 mb-4">
                               {/* Domain Logo */}
                               <div className="bg-slate-700/30 rounded-md p-2 border border-blue-400/30">
                                 {(() => {
@@ -732,11 +725,13 @@ export default function AboutPage() {
                                   href={member.linkedinUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="w-7 h-7 rounded-full bg-blue-500 hover:bg-blue-600 flex items-center justify-center transition-colors duration-200"
+                                  className="w-8 h-8 rounded bg-blue-600 hover:bg-blue-700 flex items-center justify-center transition-colors duration-200"
                                   onClick={(e) => e.stopPropagation()}
                                   aria-label={`Visit ${member.name}'s LinkedIn profile`}
                                 >
-                                  <Linkedin className="h-4 w-4 text-white" />
+                                  <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                  </svg>
                                 </a>
                               )}
                             </div>

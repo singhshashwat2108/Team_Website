@@ -208,27 +208,27 @@ const Gallery = () => {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
-            className="text-center mb-12"
+            className="mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 arcane-font">
-              Gallery
-            </h1>
-            <p className="text-white/80 text-lg max-w-2xl mx-auto">
-              Explore our journey through the years - from founding moments to major milestones
-            </p>
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 arcane-font">Gallery</h1>
+              <p className="text-white/80 text-lg max-w-2xl mx-auto">
+                Explore our journey through the years - from founding moments to major milestones
+              </p>
+            </div>
           </motion.div>
-          {/* Filters */}
+          {/* Filters below header aligned right */}
           <motion.div
-            className="flex flex-wrap justify-center gap-6 mb-12"
+            className="flex flex-col md:flex-row md:items-center md:justify-end gap-6 mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {/* Year Filter */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2 justify-end">
               <span className="text-white/70 flex items-center gap-2 mb-2">
                 <Calendar className="h-4 w-4" />
                 Year:
@@ -251,7 +251,7 @@ const Gallery = () => {
               </div>
             </div>
             {/* Category Filter */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2 justify-end">
               <span className="text-white/70 flex items-center gap-2 mb-2">
                 <Filter className="h-4 w-4" />
                 Category:
