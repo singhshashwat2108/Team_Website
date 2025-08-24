@@ -23,6 +23,7 @@ export async function POST(req: Request) {
     phone,
     sponsorshipLevel,
     message,
+    turnstileToken,   // ✅ we’ll get this from the frontend
   } = body;
 
   // ————— Honeypot check —————
@@ -38,6 +39,37 @@ export async function POST(req: Request) {
     );
   }
 
+  // ——— Turnstile Verification ———
+  try {
+    const captchaRes = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${encodeURIComponent(
+          process.env.TURNSTILE_SECRET_KEY!
+        )}&response=${encodeURIComponent(turnstileToken || "")}`,
+      }
+    );
+
+    const captchaData = await captchaRes.json();
+
+    if (!captchaData.success) {
+      console.error("Turnstile verification failed:", captchaData);
+      return NextResponse.json(
+        { error: "Captcha verification failed" },
+        { status: 400 }
+      );
+    }
+  } catch (err) {
+    console.error("Error verifying Turnstile:", err);
+    return NextResponse.json(
+      { error: "Captcha verification error" },
+      { status: 500 }
+    );
+  }
+
+  // ——— Send email ———
   try {
     const { error } = await resend.emails.send({
       from: "Sponsor Form <onboarding@resend.dev>",
