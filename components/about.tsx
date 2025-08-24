@@ -522,12 +522,12 @@ export default function AboutPage() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-white">Our Mission</h2>
-              <p className="text-white/90 mb-4 sm:mb-6 text-sm sm:text-base">
+              <h2 className="ml-4 text-2xl sm:text-3xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white">Our Mission</h2>
+              <p className="ml-4 text-white/90 mb-4 sm:mb-6 text-sm sm:text-base">
                 Team Sammard is dedicated to pushing the boundaries of amateur rocketry and aerospace innovations in India.
                 Our mission is to enhance the technical and professional growth of our members through hands-on, project-based learning. We design and build high-performance launch vehicles for intercollegiate rocketry competitions, while also developing propulsion systems, avionics hardware and software, and other advanced aerospace technologies.
               </p>
-              <p className="text-white/90 text-sm sm:text-base">
+              <p className="ml-4 text-white/90 text-sm sm:text-base">
                 Based at VIT Vellore's Innovation Creation Lab, we foster a collaborative environment where students can apply
                 theoretical knowledge to practical aerospace challenges, preparing the next generation of aerospace
                 engineers.
