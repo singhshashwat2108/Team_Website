@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Filter, Calendar, Users, Rocket, Award } from 'lucide-react';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import { Button } from "@/components/ui/button"; // Imported from shadcn/ui
 import FallingStars from "@/components/FallingStars"; // Imported from components
 
@@ -220,66 +221,42 @@ const Gallery = () => {
               </p>
             </div>
           </motion.div>
-          {/* Filters below header aligned right */}
+          {/* Dropdown Filters right-aligned above grid */}
           <motion.div
-            className="flex flex-col md:flex-row md:items-center md:justify-end gap-6 mb-12"
-            initial={{ opacity: 0, y: 20 }}
+            className="mb-10 flex justify-end"
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {/* Year Filter */}
-            <div className="flex flex-wrap items-center gap-2 justify-end">
-              <span className="text-white/70 flex items-center gap-2 mb-2">
-                <Calendar className="h-4 w-4" />
-                Year:
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {years.map((year) => (
-                  <Button
-                    key={year}
-                    variant={selectedYear === year ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedYear(year)}
-                    className={selectedYear === year
-                      ? "bg-blue-600 hover:bg-blue-700 text-white"
-                      : "bg-white/10 border-white/30 text-white hover:bg-white/20"
-                    }
-                  >
-                    {year}
-                  </Button>
-                ))}
-              </div>
-            </div>
-            {/* Category Filter */}
-            <div className="flex flex-wrap items-center gap-2 justify-end">
-              <span className="text-white/70 flex items-center gap-2 mb-2">
-                <Filter className="h-4 w-4" />
-                Category:
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedCategory(category)}
-                    className={selectedCategory === category
-                      ? "bg-blue-600 hover:bg-blue-700 text-white"
-                      : "bg-white/10 border-white/30 text-white hover:bg-white/20"
-                    }
-                  >
-                    {category}
-                  </Button>
-                ))}
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto sm:items-center">
+              <Select value={selectedYear} onValueChange={(v) => setSelectedYear(v)}>
+                <SelectTrigger className="w-full sm:w-32 bg-white/10 border-white/20 text-white focus:ring-blue-500/40 focus:border-blue-500/40">
+                  <SelectValue placeholder="Year" />
+                </SelectTrigger>
+                <SelectContent className="bg-slate-800 border-slate-700 text-white">
+                  {years.map(y => (
+                    <SelectItem key={y} value={y}>{y}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select value={selectedCategory} onValueChange={(v) => setSelectedCategory(v)}>
+                <SelectTrigger className="w-full sm:w-44 bg-white/10 border-white/20 text-white focus:ring-blue-500/40 focus:border-blue-500/40">
+                  <SelectValue placeholder="Category" />
+                </SelectTrigger>
+                <SelectContent className="bg-slate-800 border-slate-700 text-white max-h-60">
+                  {categories.map(c => (
+                    <SelectItem key={c} value={c}>{c}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </motion.div>
           {/* Gallery Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
             {filteredGallery.map((item: GalleryItem, i: number) => (
               <motion.div
                 key={i}
-                className="group cursor-pointer"
+        className="group cursor-pointer w-full max-w-[280px]"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
@@ -288,9 +265,9 @@ const Gallery = () => {
                   setImgPop(true);
                 }}
               >
-                <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 shadow-2xl border border-slate-600/50 transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-blue-500/20 flex flex-col h-full"> {/* Added flex flex-col h-full */}
-                  {/* Image */}
-                  <div className="relative h-64">
+                <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 shadow-xl border border-slate-600/50 transform transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-blue-500/20 flex flex-col h-full text-sm"> {/* Reduced shadow, hover scale, overall text */}
+                  {/* Image (reduced height) */}
+                  <div className="relative h-48 sm:h-52">
                     <Image
                       src={item.img || "/placeholder.svg"}
                       alt={item.title}
@@ -309,15 +286,15 @@ const Gallery = () => {
                     </div>
                   </div>
                   {/* Content */}
-                  <div className="p-4 flex-grow flex flex-col justify-between min-h-[100px]"> {/* Added flex-grow and min-h */}
+          <div className="p-3 flex-grow flex flex-col justify-between min-h-[80px]"> {/* Reduced padding & min height */}
                     <div>
-                      <h3 className="text-white font-semibold text-lg mb-1 group-hover:text-blue-300 transition-colors">
+            <h3 className="text-white font-semibold text-base mb-1 group-hover:text-blue-300 transition-colors">
                         {item.title}
                       </h3>
-                      <p className="text-white/60 text-sm mb-2">
+            <p className="text-white/50 text-xs mb-2 tracking-wide">
                         {item.category} • {item.year}
                       </p>
-                      <p className="text-white/80 text-sm line-clamp-2"> {/* Added line-clamp-2 */}
+            <p className="text-white/70 text-xs leading-relaxed line-clamp-2"> {/* Adjusted sizing */}
                         {item.description}
                       </p>
                     </div>
