@@ -16,6 +16,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { ExternalLink } from 'lucide-react'
 import { motion } from "framer-motion"
 import FallingStars from "@/components/FallingStars"
+import { Turnstile } from "@marsidev/react-turnstile"
+
 
 export default function SponsorsPage() {
   const [formData, setFormData] = useState({
@@ -27,8 +29,9 @@ export default function SponsorsPage() {
     phone: "",
     sponsorshipLevel: "",
     message: "",
+    turnstileToken: "",   // ✅ new field
   })
-
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
@@ -45,13 +48,14 @@ export default function SponsorsPage() {
       alert("🎉 Sponsorship request sent! We'll be in touch soon.")
       setFormData({
         nickname: "",
-        contactName: "",
-        email: "",
-        companyName: "",
-        companyWebsite: "",
-        phone: "",
-        sponsorshipLevel: "",
-        message: "",
+    contactName: "",
+    email: "",
+    companyName: "",
+    companyWebsite: "",
+    phone: "",
+    sponsorshipLevel: "",
+    message: "",
+    turnstileToken: ""
       })
     } catch {
       alert("Network error. Please try again.")
@@ -311,6 +315,15 @@ export default function SponsorsPage() {
                         }
                       />
                     </div>
+
+                    <Turnstile
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                    onSuccess={(token) => {
+                    setFormData((prev) => ({ ...prev, turnstileToken: token }))
+                    }}
+                    options={{ theme: "dark" }}
+                    />
+
                     <Button
                       type="submit"
                       size="lg"

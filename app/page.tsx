@@ -12,7 +12,8 @@ import TypingText from "@/components/typing-text"; // Imported from components
 import RocketCarousel from "@/components/rocket-carasoul"; // Imported from components
 
 export default function Home() {
-const [typingComplete, setTypingComplete] = useState(false);
+const [typingComplete, setTypingComplete] = useState(false)
+const [isCarouselPaused, setIsCarouselPaused] = useState(false)
 
 return (
   <div className="flex flex-col min-h-screen relative bg-gray-900">
@@ -257,7 +258,7 @@ return (
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Upcoming Events</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">Upcoming Events</h2>
         <p className="text-white/90 max-w-2xl mx-auto mb-12">Join us at these upcoming competitions and events.</p>
       </motion.div>
     </div>
@@ -318,62 +319,136 @@ return (
     </motion.div>
   </div>
 </section>
-    {/* Sponsors Preview */}
-    <section className="py-20 relative z-10">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
+
+<section className="py-20 relative z-10">
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center mb-12">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Sponsors</h2>
+        <p className="text-white/90 max-w-2xl mx-auto mb-12">
+          We're grateful for the support of these organizations that make our work possible.
+        </p>
+      </motion.div>
+    </div>
+    <div className="relative overflow-hidden">
+      <div
+        className="flex gap-8 items-center animate-scroll"
+        style={{
+          width: "max-content",
+          animationPlayState: isCarouselPaused ? "paused" : "running",
+          animationDuration: "65s",
+          animationTimingFunction: "linear",
+          animationIterationCount: "infinite",
+          animationName: "scrollLogos",
+        }}
+      >
+        {/* First set of logos */}
+        {[1, 2, 3, 4, 5, 6, 7].map((sponsor) => (
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            key={`first-${sponsor}`}
+            className="backdrop-blur-md bg-white/5 hover:bg-white/10 rounded-lg p-8 w-56 h-32 flex items-center justify-center flex-shrink-0 cursor-pointer border border-white/10"
+            whileHover={{
+              scale: 1.2,
+              zIndex: 10,
+              backgroundColor: "rgba(255, 255, 255, 0.15)",
+            }}
+            onHoverStart={() => setIsCarouselPaused(true)}
+            onHoverEnd={() => setIsCarouselPaused(false)}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Sponsors</h2>
-            <p className="text-white/90 max-w-2xl mx-auto mb-12">
-              We're grateful for the support of these organizations that make our work possible.
-            </p>
+            <Image
+              src={`/img/sponsor/${sponsor}.png?height=160&width=280`}
+              alt={`Sponsor ${sponsor}`}
+              width={160}
+              height={80}
+              className="max-h-full max-w-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+            />
           </motion.div>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center justify-items-center">
-          {[1, 2, 3, 4, 5, 6, 7].map((sponsor) => (
-            <motion.div
-              key={sponsor}
-              className="backdrop-blur-md bg-transparent rounded-lg p-6 w-full h-50 flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: sponsor * 0.05 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <Image
-                src={`/img/sponsor/${sponsor}.png?height=120&width=200`}
-                alt={`Sponsor ${sponsor}`}
-                width={120}
-                height={60}
-                className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity"
-              />
-            </motion.div>
-          ))}
-        </div>
-        <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <Button
-            size="lg"
-            className="backdrop-blur-md bg-blue-600/80 hover:bg-blue-600 border border-blue-400/30"
-            asChild
+        ))}
+
+        {/* Second set for seamless loop */}
+        {[1, 2, 3, 4, 5, 6, 7].map((sponsor) => (
+          <motion.div
+            key={`second-${sponsor}`}
+            className="backdrop-blur-md bg-white/5 hover:bg-white/10 rounded-lg p-8 w-56 h-32 flex items-center justify-center flex-shrink-0 cursor-pointer border border-white/10"
+            whileHover={{
+              scale: 1.2,
+              zIndex: 10,
+              backgroundColor: "rgba(255, 255, 255, 0.15)",
+            }}
+            onHoverStart={() => setIsCarouselPaused(true)}
+            onHoverEnd={() => setIsCarouselPaused(false)}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
-            <Link href="/sponsors" className="flex items-center whitespace-nowrap">
-              View All Sponsors <ChevronRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-        </motion.div>
+            <Image
+              src={`/img/sponsor/${sponsor}.png?height=160&width=280`}
+              alt={`Sponsor ${sponsor}`}
+              width={160}
+              height={80}
+              className="max-h-full max-w-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+            />
+          </motion.div>
+        ))}
+
+        {/* Third set for seamless loop */}
+        {[1, 2, 3, 4, 5, 6, 7].map((sponsor) => (
+          <motion.div
+            key={`third-${sponsor}`}
+            className="backdrop-blur-md bg-white/5 hover:bg-white/10 rounded-lg p-8 w-56 h-32 flex items-center justify-center flex-shrink-0 cursor-pointer border border-white/10"
+            whileHover={{
+              scale: 1.2,
+              zIndex: 10,
+              backgroundColor: "rgba(255, 255, 255, 0.15)",
+            }}
+            onHoverStart={() => setIsCarouselPaused(true)}
+            onHoverEnd={() => setIsCarouselPaused(false)}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <Image
+              src={`/img/sponsor/${sponsor}.png?height=160&width=280`}
+              alt={`Sponsor ${sponsor}`}
+              width={160}
+              height={80}
+              className="max-h-full max-w-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+            />
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </div>
+
+    <motion.div
+      className="text-center mt-12"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.4 }}
+      viewport={{ once: true }}
+    >
+      <Button
+        size="lg"
+        className="backdrop-blur-md bg-blue-600/80 hover:bg-blue-600 border border-blue-400/30"
+        asChild
+      >
+        <Link href="/sponsors" className="flex items-center whitespace-nowrap">
+          View All Sponsors <ChevronRight className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
+    </motion.div>
+  </div>
+</section>
+
+<style dangerouslySetInnerHTML={{
+  __html: `
+    @keyframes scrollLogos {
+      0% { transform: translateX(0px); }
+      100% { transform: translateX(-1400px); }
+    }
+  `
+}} />
   </div>
 );
 }

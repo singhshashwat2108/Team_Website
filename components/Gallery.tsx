@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React from 'react';
 import Image from "next/image";
@@ -11,12 +11,12 @@ import FallingStars from "@/components/FallingStars"; // Imported from component
 
 // Type for GalleryItem
 type GalleryItem = {
-  img: string;
-  title: string;
-  year: string;
-  category: string;
-  description: string;
-};
+  img: string
+  title: string
+  year: string
+  category: string
+  description: string
+}
 
 // Sample Gallery Data (using new image paths and placeholder images for others)
 const galleryData: GalleryItem[] = [
@@ -25,140 +25,170 @@ const galleryData: GalleryItem[] = [
     title: "Team Sammard Group Photo",
     year: "2024",
     category: "Team",
-    description: "Team members at VIT Vellore campus"
+    description: "Team members at VIT Vellore campus",
   },
   {
     img: "/img/main/launch.png",
     title: "Rocket Launch Event",
     year: "2024",
     category: "Launch",
-    description: "Successful rocket launch demonstration"
+    description: "Successful rocket launch demonstration",
   },
   {
     img: "/img/sponsor/img1.png",
     title: "Sponsor Partnership",
     year: "2024",
     category: "Sponsors",
-    description: "Partnership announcement with our sponsors"
+    description: "Partnership announcement with our sponsors",
   },
   {
     img: "/img/sponsor/img2.png",
     title: "Corporate Support",
     year: "2024",
     category: "Sponsors",
-    description: "Corporate sponsorship collaboration"
+    description: "Corporate sponsorship collaboration",
   },
   {
     img: "/img/sponsor/img3.png",
     title: "Industry Partnership",
     year: "2023",
     category: "Sponsors",
-    description: "Industry partnership development"
+    description: "Industry partnership development",
   },
   {
     img: "/img/sponsor/img4.png",
     title: "Technical Support",
     year: "2023",
     category: "Sponsors",
-    description: "Technical sponsorship and support"
+    description: "Technical sponsorship and support",
   },
   {
     img: "/placeholder.svg?height=400&width=600",
     title: "Rocket Assembly",
     year: "2023",
     category: "Team",
-    description: "Team members assembling a rocket in the workshop."
+    description: "Team members assembling a rocket in the workshop.",
   },
   {
     img: "/placeholder.svg?height=400&width=600",
     title: "Project Presentation",
     year: "2022",
     category: "Research",
-    description: "Students presenting their research findings at a conference."
+    description: "Students presenting their research findings at a conference.",
   },
   {
     img: "/placeholder.svg?height=400&width=600",
     title: "CanSat Competition",
     year: "2022",
     category: "Competition",
-    description: "Our team competing in the international CanSat competition."
+    description: "Our team competing in the international CanSat competition.",
   },
   {
     img: "/placeholder.svg?height=400&width=600",
     title: "Award Ceremony",
     year: "2021",
     category: "Awards",
-    description: "Receiving an award for innovation in aerospace."
-  }
-];
+    description: "Receiving an award for innovation in aerospace.",
+  },
+]
 
 const Gallery = () => {
-  const [selectedImg, setSelectedImg] = useState<number>(0);
-  const [imgPop, setImgPop] = useState<boolean>(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const [selectedYear, setSelectedYear] = useState<string>("All");
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const popupRef = useRef<HTMLDivElement>(null);
+  const [selectedImg, setSelectedImg] = useState<number>(0)
+  const [imgPop, setImgPop] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const [selectedYear, setSelectedYear] = useState<string>("All")
+  const [selectedCategory, setSelectedCategory] = useState<string>("All")
+  const [searchTerm, setSearchTerm] = useState<string>("")
+  const [showYearFilters, setShowYearFilters] = useState<boolean>(true)
+  const [showCategoryFilters, setShowCategoryFilters] = useState<boolean>(true)
+  const popupRef = useRef<HTMLDivElement>(null)
 
   // Get unique years and categories for filters
-  const years = ["All", ...Array.from(new Set(galleryData.map(item => item.year)))].sort().reverse();
-  const categories = ["All", ...Array.from(new Set(galleryData.map(item => item.category)))];
+  const years = ["All", ...Array.from(new Set(galleryData.map((item) => item.year)))].sort().reverse()
+  const categories = ["All", ...Array.from(new Set(galleryData.map((item) => item.category)))]
 
-  // Filter gallery items
-  const filteredGallery = galleryData.filter(item =>
-    (selectedYear === "All" || item.year === selectedYear) &&
-    (selectedCategory === "All" || item.category === selectedCategory)
-  );
+  const filteredGallery = galleryData.filter((item) => {
+    const matchesYear = selectedYear === "All" || item.year === selectedYear
+    const matchesCategory = selectedCategory === "All" || item.category === selectedCategory
+    const matchesSearch =
+      searchTerm === "" ||
+      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchTerm.toLowerCase())
+
+    return matchesYear && matchesCategory && matchesSearch
+  })
+
+  const getActiveFiltersCount = () => {
+    let count = 0
+    if (selectedYear !== "All") count++
+    if (selectedCategory !== "All") count++
+    if (searchTerm !== "") count++
+    return count
+  }
+
+  const clearAllFilters = () => {
+    setSelectedYear("All")
+    setSelectedCategory("All")
+    setSearchTerm("")
+  }
 
   // Handle popup visibility transition
   useEffect(() => {
     if (imgPop) {
-      setTimeout(() => setIsVisible(true), 10);
-      document.body.style.overflow = "hidden";
+      setTimeout(() => setIsVisible(true), 10)
+      document.body.style.overflow = "hidden"
     } else {
-      setIsVisible(false);
-      document.body.style.overflow = "auto";
+      setIsVisible(false)
+      document.body.style.overflow = "auto"
     }
     return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [imgPop]);
+      document.body.style.overflow = "auto"
+    }
+  }, [imgPop])
 
   // Detect click outside popup
   const handleBackgroundClick = (event: React.MouseEvent) => {
     if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
-      setIsVisible(false);
+      setIsVisible(false)
     }
-  };
+  }
 
   // Close popup after fade-out finishes
   const handleTransitionEnd = () => {
     if (!isVisible) {
-      setImgPop(false);
+      setImgPop(false)
     }
-  };
+  }
 
   // Navigate gallery
   const swipeImg = (moveType: string) => {
     if (moveType === "prv") {
-      setSelectedImg((prev) => (prev === 0 ? filteredGallery.length - 1 : prev - 1));
+      setSelectedImg((prev) => (prev === 0 ? filteredGallery.length - 1 : prev - 1))
     }
     if (moveType === "nxt") {
-      setSelectedImg((prev) => (prev === filteredGallery.length - 1 ? 0 : prev + 1));
+      setSelectedImg((prev) => (prev === filteredGallery.length - 1 ? 0 : prev + 1))
     }
-  };
+  }
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case "Team": return <Users className="h-5 w-5" />;
-      case "Launch": return <Rocket className="h-5 w-5" />;
-      case "Competition": return <Award className="h-5 w-5" />;
-      case "Sponsors": return <Award className="h-5 w-5" />;
-      case "Research": return <Filter className="h-5 w-5" />; // Added Research icon
-      case "Awards": return <Award className="h-5 w-5" />; // Added Awards icon
-      default: return <Calendar className="h-5 w-5" />;
+      case "Team":
+        return <Users className="h-5 w-5" />
+      case "Launch":
+        return <Rocket className="h-5 w-5" />
+      case "Competition":
+        return <Award className="h-5 w-5" />
+      case "Sponsors":
+        return <Award className="h-5 w-5" />
+      case "Research":
+        return <Filter className="h-5 w-5" />
+      case "Awards":
+        return <Award className="h-5 w-5" />
+      default:
+        return <Calendar className="h-5 w-5" />
     }
-  };
+  }
 
   return (
     <div className="relative">
@@ -170,7 +200,7 @@ const Gallery = () => {
           font-family: 'Orbitron', monospace;
           font-weight: 700;
           letter-spacing: 0.05em;
-          color: white; /* Changed to white */
+          color: white;
         }
         .animate-gradient-shift {
           background-size: 400% 400%;
@@ -201,7 +231,7 @@ const Gallery = () => {
           overflow-x: hidden;
         }
       `}</style>
-      
+
       {/* Falling Stars Background */}
       <FallingStars />
       {/* Content */}
@@ -251,6 +281,7 @@ const Gallery = () => {
               </Select>
             </div>
           </motion.div>
+
           {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
             {filteredGallery.map((item: GalleryItem, i: number) => (
@@ -261,8 +292,8 @@ const Gallery = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 onClick={() => {
-                  setSelectedImg(i);
-                  setImgPop(true);
+                  setSelectedImg(i)
+                  setImgPop(true)
                 }}
               >
                 <div className="relative overflow-hidden rounded-lg bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 shadow-xl border border-slate-600/50 transform transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-blue-500/20 flex flex-col h-full text-sm"> {/* Reduced shadow, hover scale, overall text */}
@@ -311,9 +342,7 @@ const Gallery = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-white/60 text-lg">
-                No images found for the selected filters.
-              </p>
+              <p className="text-white/60 text-lg">No images found for the selected filters.</p>
             </motion.div>
           )}
         </div>
@@ -327,10 +356,7 @@ const Gallery = () => {
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div
-            ref={popupRef}
-            className="relative flex flex-col items-center gap-4 max-w-4xl mx-4"
-          >
+c          <div ref={popupRef} className="relative flex flex-col items-center gap-4 max-w-4xl mx-4">
             {/* Close Button */}
             <button
               onClick={() => setIsVisible(false)}
@@ -366,9 +392,7 @@ const Gallery = () => {
             </div>
             {/* Image Info */}
             <div className="text-center text-white max-w-2xl">
-              <h3 className="text-2xl font-bold mb-2">
-                {filteredGallery[selectedImg]?.title}
-              </h3>
+              <h3 className="text-2xl font-bold mb-2">{filteredGallery[selectedImg]?.title}</h3>
               <div className="flex justify-center items-center gap-4 mb-3 text-white/80">
                 <span className="flex items-center gap-1">
                   {getCategoryIcon(filteredGallery[selectedImg]?.category || "")}
@@ -377,23 +401,21 @@ const Gallery = () => {
                 <span>•</span>
                 <span>{filteredGallery[selectedImg]?.year}</span>
               </div>
-              <p className="text-white/90">
-                {filteredGallery[selectedImg]?.description}
-              </p>
+              <p className="text-white/90">{filteredGallery[selectedImg]?.description}</p>
             </div>
           </div>
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
 const GalleryPage = () => {
   return (
     <div className="relative">
-      <Gallery/>
+      <Gallery />
     </div>
-  );
-};
+  )
+}
 
-export default GalleryPage;
+export default GalleryPage
