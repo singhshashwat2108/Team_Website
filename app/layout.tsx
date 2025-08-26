@@ -187,9 +187,9 @@ return (
             {/* FOOTER */}
             <footer className="border-t bg-background">
               <div className="container py-4 md:py-5">
-                <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1.4fr] gap-y-8 md:gap-x-14">
+                <div className="grid grid-cols-1 md:grid-cols-[1.55fr_1fr_1.4fr] gap-y-6 md:gap-x-0">
                   {/* Logo and Slogan */}
-                  <div className="space-y-3 md:pr-24">
+                  <div className="space-y-1 md:pr-0 md:mr-1">
                     <Link href="/" className="flex items-center gap-2">
                       <img
                         src="sammard_logo.png"
@@ -203,7 +203,7 @@ return (
                     </p>
                   </div>
                   {/* Quick Links - Now in 2 columns */}
-                  <div>
+                  <div className="-ml-1">
                     <h3 className="font-medium mb-4">Quick Links</h3>
                     <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                       {[

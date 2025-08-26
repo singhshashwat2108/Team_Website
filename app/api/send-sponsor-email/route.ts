@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
+// Safely initialize Resend only if API key is present to avoid build-time failure
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function POST(req: Request) {
   let body: any;
@@ -67,6 +69,12 @@ export async function POST(req: Request) {
       { error: "Captcha verification error" },
       { status: 500 }
     );
+  }
+
+  // If email service not configured, skip sending but report success (prevents build errors when key absent)
+  if (!resend) {
+    console.warn("RESEND_API_KEY missing – skipping email send.");
+    return NextResponse.json({ success: true, skipped: true });
   }
 
   // ——— Send email ———

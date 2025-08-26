@@ -546,16 +546,16 @@ export default function AboutPage() {
       </section>
 
       {/* Legacy Section */}
-      <section className="min-h-screen backdrop-blur-sm bg-white/5 flex items-center justify-center relative z-10">
+    <section className="min-h-screen bg-white flex items-center justify-center relative z-10">
         <motion.div
-          className="text-center text-white max-w-4xl px-6"
+      className="text-center text-slate-800 max-w-4xl px-6"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold mb-8">Our Legacy</h2>
-          <p className="text-xl leading-relaxed text-white/90 mb-6">
+      <h2 className="text-4xl font-bold mb-8 text-slate-900">Our Legacy</h2>
+      <p className="text-xl leading-relaxed text-slate-600 mb-6">
             Over the years, Team Sammard has been led by exceptional individuals whose dedication and insight have shaped our mission and values. Each board has brought unique perspectives and accomplishments that continue to inspire our members.
           </p>
         </motion.div>
@@ -708,7 +708,7 @@ export default function AboutPage() {
                             <div className="text-center mb-2">
                               <h3 className="text-lg sm:text-xl font-bold mb-1">{member.name}</h3>
                               <p className="text-blue-300 text-sm font-medium">{member.role}</p>
-                              <p className="text-slate-300 text-xs">{member.position}</p>
+                              <p className="text-slate-300 text-xs">{member.role}</p>
                             </div>
                             {/* Domain Logo and LinkedIn stacked vertically */}
                             <div className="flex flex-col items-center gap-3 mb-4">
