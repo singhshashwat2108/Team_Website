@@ -83,6 +83,63 @@ const FallingStars = () => {
   )
 }
 
+// Research Card Component with expandable description
+interface ResearchCardProps {
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+  imageSrc: string;
+  imageAlt: string;
+  animationDirection: 'left' | 'right';
+}
+
+const ResearchCard = ({ title, shortDescription, fullDescription, imageSrc, imageAlt, animationDirection }: ResearchCardProps) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <motion.div
+      className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-8 hover:bg-white/20 transition-colors"
+      initial={{ opacity: 0, x: animationDirection === 'left' ? -50 : 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -5 }}
+    >
+      <h3 className="text-2xl font-bold mb-4 text-white">{title}</h3>
+      <motion.div
+        initial={false}
+        animate={{ height: isExpanded ? 'auto' : 'auto' }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
+        <p className="text-white/90 mb-4">
+          {isExpanded ? fullDescription : shortDescription}
+        </p>
+      </motion.div>
+      <Button
+        variant="ghost"
+        size="sm"
+        className="text-blue-300 hover:text-blue-200 hover:bg-white/10 p-0 h-auto mb-6"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        {isExpanded ? 'Show Less' : 'Learn More'}
+        <ChevronRight 
+          className={`ml-1 h-4 w-4 transition-transform duration-200 ${
+            isExpanded ? 'rotate-90' : ''
+          }`} 
+        />
+      </Button>
+      <div className="relative h-64 rounded-lg overflow-hidden">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+          className="object-cover"
+        />
+      </div>
+    </motion.div>
+  );
+};
+
 export default function ProjectsPage() {
   const categories = ["All", "Rockets", "CanSat", "Avionics", "Research"]
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -120,7 +177,7 @@ export default function ProjectsPage() {
       title: "Pinaka",
       category: "Rockets",
       year: "2021",
-      description: "High-power rocket designed for 30,000ft altitude.",
+      description: "The team's first indigenously developed sounding rocket, built in 2021. Designed to reach an altitude of 30,000 ft, Pinaka marked a major milestone in Team Sammard's journey, laying the foundation for advanced rocketry projects in the years ahead.",
       image: "/placeholder.svg?height=800&width=1200",
       icon: <Rocket className="h-6 w-6" />,
     },
@@ -129,7 +186,7 @@ export default function ProjectsPage() {
       category: "Research",
       year: "2022",
       description:
-        "Research project focused on making solid rocket motor for collegiate rocketry applications.",
+        "The foundation for our propulsion systems was laid in 2022, when KNSB pellets were designed and tested for the first time, marking the beginning of our journey in solid rocket motor development.",
       image: "/placeholder.svg?height=800&width=1200",
       icon: <Wrench className="h-6 w-6" />,
     },
@@ -140,24 +197,6 @@ export default function ProjectsPage() {
       description: "CanSat design featuring a glider deployment system for extended data collection during descent.",
       image: "/placeholder.svg?height=800&width=1200",
       icon: <Satellite className="h-6 w-6" />,
-    },
-    {
-      title: "Telemetry System",
-      category: "Avionics",
-      year: "2020",
-      description:
-        "Long-range telemetry system for real-time rocket flight data transmission and ground station monitoring.",
-      image: "/placeholder.svg?height=800&width=1200",
-      icon: <Cpu className="h-6 w-6" />,
-    },
-    {
-      title: "In-house layup research",
-      category: "Research",
-      year: "2021",
-      description:
-        "Research on lightweight composite materials for rocket airframes, focusing on strength-to-weight optimization.",
-      image: "/placeholder.svg?height=800&width=1200",
-      icon: <Wrench className="h-6 w-6" />,
     },
     {
       title: "Agneya",
@@ -193,7 +232,7 @@ export default function ProjectsPage() {
       <FallingStars />
       
       {/* Hero Section */}
-      <section className="relative py-20 pt-32 z-10">
+      <section className="relative py-18 pt-32 z-10">
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -272,7 +311,9 @@ export default function ProjectsPage() {
                             </div>
                           </CardHeader>
                           <CardContent className="flex-grow">
-                            <p className="text-white/80">{project.description}</p>
+                            <p className="text-white/80 line-clamp-3 text-sm leading-relaxed">
+                              {project.description}
+                            </p>
                           </CardContent>
                           <CardFooter>
                             <Button
@@ -373,52 +414,22 @@ export default function ProjectsPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-white">Research & Development</h2>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-8 hover:bg-white/20 transition-colors"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-            >
-              <h3 className="text-2xl font-bold mb-4 text-white">Propulsion Systems</h3>
-              <p className="text-white/90 mb-6">
-                Our team conducts ongoing research into advanced propulsion systems, including solid rocket motors,
-                hybrid propulsion, and experimental fuel formulations. This research directly informs the design of our
-                competition rockets.
-              </p>
-              <div className="relative h-64 rounded-lg overflow-hidden">
-                <Image
-                  src="/placeholder.svg?height=400&width=800"
-                  alt="Propulsion research"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </motion.div>
-            <motion.div
-              className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-8 hover:bg-white/20 transition-colors"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-            >
-              <h3 className="text-2xl font-bold mb-4 text-white">Avionics & Control Systems</h3>
-              <p className="text-white/90 mb-6">
-                We develop custom avionics packages for flight control, data acquisition, and telemetry. Our research
-                focuses on miniaturization, reliability, and integration of advanced sensors for precise flight data
-                collection.
-              </p>
-              <div className="relative h-64 rounded-lg overflow-hidden">
-                <Image
-                  src="/placeholder.svg?height=400&width=800"
-                  alt="Avionics research"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </motion.div>
+            <ResearchCard
+              title="Propulsion Systems"
+              shortDescription="Our propulsion systems provide the thrust that powers rockets to altitude. IGNIS (J-class), our in-house SRAD KNSB solid rocket motor, was fully designed, built, and successfully tested by the team."
+              fullDescription="Our propulsion systems provide the thrust that powers rockets to altitude. IGNIS (J-class), our in-house SRAD KNSB solid rocket motor, was fully designed, built, and successfully tested by the team, proving our ability to create reliable high-thrust engines. Building on this foundation, we are now developing an advanced M-class motor for higher altitudes, heavier payloads, and enhanced mission performance. Our research includes advanced grain geometry design, nozzle optimization, and comprehensive testing protocols to ensure maximum efficiency and safety."
+              imageSrc="/placeholder.svg?height=400&width=800"
+              imageAlt="Propulsion research"
+              animationDirection="left"
+            />
+            <ResearchCard
+              title="Avionics & Control Systems"
+              shortDescription="We develop custom avionics packages for flight control, data acquisition, and telemetry. Our research focuses on miniaturization, reliability, and integration of advanced sensors."
+              fullDescription="We develop custom avionics packages for flight control, data acquisition, and telemetry. Our research focuses on miniaturization, reliability, and integration of advanced sensors for precise flight data collection. Our avionics systems include redundant flight computers, GPS tracking, accelerometers, gyroscopes, and barometric sensors. We also develop custom ground station software for real-time monitoring and post-flight analysis, ensuring comprehensive data collection throughout the entire flight profile."
+              imageSrc="/placeholder.svg?height=400&width=800"
+              imageAlt="Avionics research"
+              animationDirection="right"
+            />
           </div>
         </div>
       </section>
