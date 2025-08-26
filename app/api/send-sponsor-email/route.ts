@@ -17,7 +17,7 @@ export async function POST(req: Request) {
   }
 
   const {
-    nickname,         // ← honeypot field
+    nickname,         
     contactName,
     email,
     companyName,
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     phone,
     sponsorshipLevel,
     message,
-    turnstileToken,   // ✅ we’ll get this from the frontend
+    turnstileToken,   
   } = body;
 
   // ————— Honeypot check —————
