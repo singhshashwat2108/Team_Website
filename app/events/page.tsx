@@ -98,7 +98,7 @@ export default function EventsPage() {
       url: "https://cansatcompetition.com/",
     },
     {
-      title: "Aerospace Workshop Series",
+      title: "TECHNO VIT",
       category: "Workshops",
       date: "March 10-15, 2025",
       location: "VIT Vellore",
