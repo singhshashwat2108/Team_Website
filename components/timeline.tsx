@@ -282,6 +282,7 @@ const Timeline = () => {
 
   const generateWavePath = (amp: number) => {
     const points = [];
+    // Use true container center; with margins.left = cardWidth+gap and margins.right = gap, layout is inherently balanced.
     const centerX = containerWidth / 2;
     // Generate full path immediately without scroll dependency
     for (let y = 0; y <= totalHeight; y += 2) {
@@ -293,7 +294,7 @@ const Timeline = () => {
 
   const getCirclePosition = (yPosition: number) => {
     const centerX = containerWidth / 2;
-  const xPosition = Math.sin(yPosition * frequency) * safeAmplitude + centerX;
+    const xPosition = Math.sin(yPosition * frequency) * safeAmplitude + centerX;
     return { x: xPosition, y: yPosition };
   };
 
@@ -319,13 +320,17 @@ const Timeline = () => {
 
   // Clamp amplitude so even extreme sine offset + card width + gap stays inside container
   const safeAmplitude = React.useMemo(() => {
-    const paddingApprox = 64; // px (px-8 left + right typical on small, adjust generously)
-    const maxAllowed = Math.max(20, (containerWidth - (margins.cardWidth + paddingApprox + margins.right + 20)) / 2);
+    // Ensure cards never force horizontal scroll: amplitude + cardWidth + gap fits inside half width
+    const gap = margins.right; // same as horizontal clearance
+    // Maximum amplitude so that: centerX + amplitude + gap + cardWidth <= containerWidth AND centerX - amplitude - (cardWidth+gap) >= 0
+    // => amplitude <= containerWidth/2 - (cardWidth + gap)
+    const theoreticalMax = containerWidth / 2 - (margins.cardWidth + gap);
+    const maxAllowed = Math.max(20, theoreticalMax - 8); // subtract small safety buffer
     return Math.min(amplitudeBase, maxAllowed);
   }, [amplitudeBase, containerWidth, margins.cardWidth, margins.right]);
 
   return (
-    <div className="relative">
+  <div className="relative overflow-hidden">
       {/* Add Orbitron Font */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
