@@ -306,7 +306,7 @@ export default function ProjectsPage() {
           </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              className="relative h-[400px] rounded-lg overflow-hidden backdrop-blur-md bg-white/5 border border-white/10"
+              className="relative h-[400px] rounded-lg overflow-hidden bg-white border border-slate-200 shadow-sm"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -331,13 +331,13 @@ export default function ProjectsPage() {
                 features a comercial off-the-shelf motor, advanced avionics, a scientific cubesat payload and a dual deployment recovery system.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-4">
-                  <h4 className="font-bold mb-1 text-white">Height</h4>
-                  <p className="text-white/80">10,000 ft</p>
+                <div className="bg-white border border-slate-200 rounded-lg p-4">
+                  <h4 className="font-bold mb-1 text-slate-800">Height</h4>
+                  <p className="text-slate-600">10,000 ft</p>
                 </div>
-                <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-4">
-                  <h4 className="font-bold mb-1 text-white">Max Speed</h4>
-                  <p className="text-white/80">Mach 0.8</p>
+                <div className="bg-white border border-slate-200 rounded-lg p-4">
+                  <h4 className="font-bold mb-1 text-slate-800">Max Speed</h4>
+                  <p className="text-slate-600">Mach 0.8</p>
                 </div>
                 <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-4">
                   <h4 className="font-bold mb-1 text-white">Length</h4>

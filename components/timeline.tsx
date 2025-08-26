@@ -267,20 +267,25 @@ const Timeline = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const amplitude = 100; // Reduced from 120 to give more space
-  const frequency = 0.006;
-  const marginLeft = 450; // Reduced from 420 to shift cards left
-  const marginRight = 120; // Increased from 100 to shift cards left
+  // Base horizontal wave amplitude (will be clamped to viewport to avoid horizontal scroll)
+  const amplitudeBase = React.useMemo(() => {
+    if (containerWidth < 640) return 60;      // phones
+    if (containerWidth < 1024) return 90;     // tablets
+    if (containerWidth < 1536) return 110;    // desktop
+    return 130;                               // very wide screens
+  }, [containerWidth]);
+  const frequency = 0.006; // Wave frequency
+  // Removed hard-coded asymmetric margins (previously marginLeft / marginRight) to center timeline
   const yGap = 400;
   const yBase = 400;
   const totalHeight = timelineData.length * yGap + yBase;
 
-  const generateWavePath = () => {
+  const generateWavePath = (amp: number) => {
     const points = [];
     const centerX = containerWidth / 2;
     // Generate full path immediately without scroll dependency
     for (let y = 0; y <= totalHeight; y += 2) {
-      const x = Math.sin(y * frequency) * amplitude + centerX;
+      const x = Math.sin(y * frequency) * amp + centerX;
       points.push(`${x},${y}`);
     }
     return points.length > 0 ? `M ${points.join(' L ')}` : '';
@@ -288,20 +293,36 @@ const Timeline = () => {
 
   const getCirclePosition = (yPosition: number) => {
     const centerX = containerWidth / 2;
-    const xPosition = Math.sin(yPosition * frequency) * amplitude + centerX;
+  const xPosition = Math.sin(yPosition * frequency) * safeAmplitude + centerX;
     return { x: xPosition, y: yPosition };
   };
 
   const getResponsiveMargins = () => {
-    if (containerWidth < 768) {
-      return { left: 320, right: 100 }; // Mobile - increased left margin
-    } else if (containerWidth < 1024) {
-      return { left: 400, right: 110 }; // Tablet - increased left margin
-    }
-    return { left: 450, right: 120 }; // Desktop - increased left margin
+    // Card widths by breakpoint (Tailwind: w-72=18rem, md:w-80=20rem, lg:w-96=24rem)
+  let cardWidth = 288; // default (w-72)
+    if (containerWidth >= 768) cardWidth = 320; // md
+    if (containerWidth >= 1024) cardWidth = 384; // lg
+
+    // Desired gap between wave center line and card edge
+  // Horizontal clearance between wave center line and nearest card edge
+  let gap = 75; // base desktop
+  if (containerWidth < 640) gap = 50;            // phones
+  else if (containerWidth < 1024) gap = 65;      // tablets
+  else if (containerWidth >= 1536) gap = 90;     // very wide
+
+    // Left margin must be cardWidth + gap so the right edge of left card aligns at center-gap
+    // Right margin is just the gap so left edge of right card aligns at center+gap
+  return { left: cardWidth + gap, right: gap, cardWidth };
   };
 
   const margins = getResponsiveMargins();
+
+  // Clamp amplitude so even extreme sine offset + card width + gap stays inside container
+  const safeAmplitude = React.useMemo(() => {
+    const paddingApprox = 64; // px (px-8 left + right typical on small, adjust generously)
+    const maxAllowed = Math.max(20, (containerWidth - (margins.cardWidth + paddingApprox + margins.right + 20)) / 2);
+    return Math.min(amplitudeBase, maxAllowed);
+  }, [amplitudeBase, containerWidth, margins.cardWidth, margins.right]);
 
   return (
     <div className="relative">
@@ -393,7 +414,7 @@ const Timeline = () => {
               </filter>
             </defs>
             <path
-              d={generateWavePath()}
+              d={generateWavePath(safeAmplitude)}
               fill="none"
               stroke="url(#rocketGradient)"
               strokeWidth="6"
@@ -408,18 +429,7 @@ const Timeline = () => {
               const isVisible = visibleItems.has(index);
               return (
                 <g key={`circle-${index}`}>
-                  {/* Pulsing background circle */}
-                  <circle
-                    cx={circlePos.x}
-                    cy={circlePos.y}
-                    r="40"
-                    fill="url(#rocketGradient)"
-                    opacity="0.3"
-                    className={`transition-all duration-600 ${isVisible ? 'animate-ping' : 'opacity-0'}`}
-                    style={{
-                      transitionDelay: isVisible ? `${index * 150 + 400}ms` : '0ms',
-                    }}
-                  />
+                  {/* Background halo removed (was pulsing circle) to avoid large expanding artifact */}
                   {/* Main year circle */}
                   <circle
                     cx={circlePos.x}
@@ -458,7 +468,7 @@ const Timeline = () => {
             {timelineData.map((item, index) => {
               const yPosition = index * yGap + yBase;
               const centerX = containerWidth / 2;
-              const xOffset = Math.sin(yPosition * frequency) * amplitude + centerX;
+              const xOffset = Math.sin(yPosition * frequency) * safeAmplitude + centerX;
               const isVisible = visibleItems.has(index);
 
               return (
@@ -472,7 +482,12 @@ const Timeline = () => {
                   className="absolute transform -translate-y-1/2"
                   style={{
                     top: `${yPosition}px`,
-                    left: item.side === 'left' ? `${xOffset - margins.left}px` : `${xOffset + margins.right}px`,
+                    // For small screens, center all cards to avoid awkward left/right overlaps
+                    left: containerWidth < 640
+                      ? `${xOffset - (margins.cardWidth / 2)}px` // center card around wave on very small screens
+                      : item.side === 'left'
+                        ? `${xOffset - margins.left}px`
+                        : `${xOffset + margins.right}px`,
                   }}
                 >
                   <div

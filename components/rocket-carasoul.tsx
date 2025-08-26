@@ -165,7 +165,7 @@ const RocketCarousel = () => {
             className="flex gap-6 h-[500px]"
           >
             {/* Video Section - Slender Box */}
-            <div className="w-[280px] backdrop-blur-md bg-white/5 border border-white/10 rounded-lg overflow-hidden">
+            <div className="w-[280px] bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
               <video
                 src={currentRocket.videoSrc}
                 autoPlay
@@ -176,7 +176,7 @@ const RocketCarousel = () => {
               />
             </div>
             {/* Information Section - Specifications Box */}
-            <div className="flex-1 backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-6">
+            <div className="flex-1 bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
               <div className="h-full flex flex-col">
                 {/* Header */}
                 <div className="mb-6">
@@ -196,37 +196,37 @@ const RocketCarousel = () => {
                 {/* Specifications Grid */}
                 <div className="flex-1 grid grid-cols-2 gap-3 mb-6">
                   <div className="space-y-3">
-                    <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-3">
+                    <div className="bg-white border border-slate-200 rounded-lg p-3">
                       <div className="text-white/70 text-sm mb-1">Motor Model</div>
                       <div className="text-blue-300 font-semibold">{currentRocket.specifications.motorModel}</div>
                     </div>
-                    <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-3">
+                    <div className="bg-white border border-slate-200 rounded-lg p-3">
                       <div className="text-white/70 text-sm mb-1">Body Material</div>
                       <div className="text-blue-300 font-semibold">{currentRocket.specifications.bodyMaterial}</div>
                     </div>
-                    <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-3">
+                    <div className="bg-white border border-slate-200 rounded-lg p-3">
                       <div className="text-white/70 text-sm mb-1">AvgThrust</div>
                       <div className="text-blue-300 font-semibold">{currentRocket.specifications.AvgThrust}</div>
                     </div>
-                    <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-3">
+                    <div className="bg-white border border-slate-200 rounded-lg p-3">
                       <div className="text-white/70 text-sm mb-1">Design Apogee</div>
                       <div className="text-blue-300 font-semibold">{currentRocket.specifications.designApogee}</div>
                     </div>
                   </div>
                   <div className="space-y-3">
-                    <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-3">
+                    <div className="bg-white border border-slate-200 rounded-lg p-3">
                       <div className="text-white/70 text-sm mb-1">Length</div>
                       <div className="text-blue-300 font-semibold">{currentRocket.specifications.length}</div>
                     </div>
-                    <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-3">
+                    <div className="bg-white border border-slate-200 rounded-lg p-3">
                       <div className="text-white/70 text-sm mb-1">Diameter</div>
                       <div className="text-blue-300 font-semibold">{currentRocket.specifications.diameter}</div>
                     </div>
-                    <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-3">
+                    <div className="bg-white border border-slate-200 rounded-lg p-3">
                       <div className="text-white/70 text-sm mb-1">Weight</div>
                       <div className="text-blue-300 font-semibold">{currentRocket.specifications.weight}</div>
                     </div>
-                    <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-lg p-3">
+                    <div className="bg-white border border-slate-200 rounded-lg p-3">
                       <div className="text-white/70 text-sm mb-1">Dry Weight</div>
                       <div className="text-blue-300 font-semibold">{currentRocket.specifications.dryWeight}</div>
                     </div>

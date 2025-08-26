@@ -35,11 +35,10 @@ return (
       <video
         autoPlay
         muted
-        loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/background.mp4" type="video/mp4" />
+        <source src="/Background.mp4" type="video/mp4" />
         {/* Fallback gradient if video fails to load */}
         <div className="absolute inset-0 bg-gradient-to-r from-sky-900 via-sky-800 to-blue-600" />
       </video>
@@ -352,11 +351,11 @@ return (
         {[1, 2, 3, 4, 5, 6, 7].map((sponsor) => (
           <motion.div
             key={`first-${sponsor}`}
-            className="backdrop-blur-md bg-white/5 hover:bg-white/10 rounded-lg p-8 w-56 h-32 flex items-center justify-center flex-shrink-0 cursor-pointer border border-white/10"
+            className="bg-white rounded-lg p-6 w-56 h-32 flex items-center justify-center flex-shrink-0 cursor-pointer border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
             whileHover={{
-              scale: 1.2,
+              scale: 1.1,
               zIndex: 10,
-              backgroundColor: "rgba(255, 255, 255, 0.15)",
+              backgroundColor: "#ffffff",
             }}
             onHoverStart={() => setIsCarouselPaused(true)}
             onHoverEnd={() => setIsCarouselPaused(false)}
@@ -367,7 +366,7 @@ return (
               alt={`Sponsor ${sponsor}`}
               width={160}
               height={80}
-              className="max-h-full max-w-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+              className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
             />
           </motion.div>
         ))}
@@ -376,11 +375,11 @@ return (
         {[1, 2, 3, 4, 5, 6, 7].map((sponsor) => (
           <motion.div
             key={`second-${sponsor}`}
-            className="backdrop-blur-md bg-white/5 hover:bg-white/10 rounded-lg p-8 w-56 h-32 flex items-center justify-center flex-shrink-0 cursor-pointer border border-white/10"
+            className="bg-white rounded-lg p-6 w-56 h-32 flex items-center justify-center flex-shrink-0 cursor-pointer border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
             whileHover={{
-              scale: 1.2,
+              scale: 1.1,
               zIndex: 10,
-              backgroundColor: "rgba(255, 255, 255, 0.15)",
+              backgroundColor: "#ffffff",
             }}
             onHoverStart={() => setIsCarouselPaused(true)}
             onHoverEnd={() => setIsCarouselPaused(false)}
@@ -391,7 +390,7 @@ return (
               alt={`Sponsor ${sponsor}`}
               width={160}
               height={80}
-              className="max-h-full max-w-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+              className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
             />
           </motion.div>
         ))}
@@ -400,11 +399,11 @@ return (
         {[1, 2, 3, 4, 5, 6, 7].map((sponsor) => (
           <motion.div
             key={`third-${sponsor}`}
-            className="backdrop-blur-md bg-white/5 hover:bg-white/10 rounded-lg p-8 w-56 h-32 flex items-center justify-center flex-shrink-0 cursor-pointer border border-white/10"
+            className="bg-white rounded-lg p-6 w-56 h-32 flex items-center justify-center flex-shrink-0 cursor-pointer border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
             whileHover={{
-              scale: 1.2,
+              scale: 1.1,
               zIndex: 10,
-              backgroundColor: "rgba(255, 255, 255, 0.15)",
+              backgroundColor: "#ffffff",
             }}
             onHoverStart={() => setIsCarouselPaused(true)}
             onHoverEnd={() => setIsCarouselPaused(false)}
@@ -415,7 +414,7 @@ return (
               alt={`Sponsor ${sponsor}`}
               width={160}
               height={80}
-              className="max-h-full max-w-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+              className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
             />
           </motion.div>
         ))}
