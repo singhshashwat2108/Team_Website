@@ -27,20 +27,19 @@ return (
         text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
       }
     `}</style>
-    {/* Falling Stars Background */}
-    <FallingStars />
+   
     {/* Hero Section with Video */}
-    <section className="relative h-screen w-full overflow-hidden z-10 -mt-16 pt-16">
+    <section className="relative h-screen w-full overflow-hidden z-10">
       {/* Video Background */}
       <video
         autoPlay
         muted
         playsInline
+        loop
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src="/Background.mp4" type="video/mp4" />
-        {/* Fallback gradient if video fails to load */}
-        <div className="absolute inset-0 bg-gradient-to-r from-sky-900 via-sky-800 to-blue-600" />
+        <source src="video/background2.mp4" type="video/mp4" />
+    
       </video>
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black/20" />
@@ -59,7 +58,7 @@ return (
             <b>"</b>
           </motion.span>
           <TypingText
-            text="Give your dream some space to unfold"
+            text="Give your dreams some space to unfold"
             delay={70} // Adjust typing speed here
             className="inline-block" // Keep it inline with quotes
             onTypingComplete={() => setTypingComplete(true)}
@@ -108,6 +107,7 @@ return (
         </motion.div>
       </div>
     </section>
+    <FallingStars /> 
     {/* About Preview Section */}
     <section className="py-20 relative z-10">
       <div className="container mx-auto px-4 relative z-10">

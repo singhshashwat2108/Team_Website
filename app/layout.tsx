@@ -37,13 +37,23 @@ return (
 );
 }
 
+
+
 export default function RootLayout({
 children,
 }: Readonly<{
 children: React.ReactNode;
 }>) {
+const [scrolled, setScrolled] = useState(false);
 const [showSplash, setShowSplash] = useState(false);
 const [isLoading, setIsLoading] = useState(true);
+
+useEffect(() => {
+  const handleScroll = () => setScrolled(window.scrollY > 50);
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
 
 useEffect(() => {
   // Check if splash has been shown in this session
@@ -102,66 +112,56 @@ return (
         >
           <div className="flex flex-col min-h-screen bg-[url('/images/main/launch.jpeg')] bg-cover bg-center bg-no-repeat">
             {/* HEADER */}
-            <header className="fixed top-0 left-0 w-full z-50 h-20 bg-black/20 backdrop-blur">
-              <div className="container flex h-16 items-center justify-between">
-                <Link href="/" className=" flex items-center gap-2">
-                  <img
-                    src="sammard_logo.png"
-                    alt="Rocket"
-                    className="w-11 h-17"
-                  />
-                <span className="font-bold text-lg ml-[3px] mt-[3px]">TEAM SAMMARD</span></Link>
-                <nav className="relative hidden md:flex gap-6 h-full items-center">
-                  {[
-                    "About",
-                    "Projects",
-                    "Events",
-                    "Timeline",
-                    "Gallery",
-                    "Sponsors",
-                  ].map((page) => (
+            <header
+              className="
+                fixed inset-x-0 top-0 z-[100] h-20
+                bg-transparent
+              "
+            >
+              <div className="container flex h-20 items-center justify-between">
+                <Link href="/" className="flex items-center gap-2">
+                  <img src="/sammard_logo.png" alt="Team Sammard Logo" className="w-11 h-11" />
+                  <span className="font-bold text-lg ml-[3px] mt-[1px]">TEAM SAMMARD</span>
+                </Link>
+
+                {/* Desktop nav */}
+                <nav className="hidden md:flex gap-6 items-center">
+                  {["About", "Projects", "Events", "Timeline", "Gallery", "Sponsors"].map((page) => (
                     <Button
                       key={page}
                       asChild
-                      className="h-auto px-4 py-2 bg-transparent text-foreground hover:bg-transparent relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-foreground after:transition-all after:duration-300 hover:after:w-full"
+                      className="h-auto px-0 bg-transparent text-foreground hover:bg-transparent relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-foreground after:transition-all after:duration-300 hover:after:w-full"
+                      variant="ghost"
                     >
-                      <Link
-                        href={`/${page.toLowerCase()}`}
-                        className="text-sm font-medium transition-colors flex items-center h-full"
-                      >
-                        <span>{page}</span>
+                      <Link href={`/${page.toLowerCase()}`} className="text-sm font-medium transition-colors">
+                        {page}
                       </Link>
                     </Button>
                   ))}
                 </nav>
+
+                {/* Right actions + mobile menu */}
                 <div className="flex items-center gap-4">
                   <Link
                     href="/sponsors"
-                    className="hidden md:flex h-10 px-4 py-2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90"
+                    className="hidden md:inline-flex h-10 px-4 py-2 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90"
                   >
                     Contact Us
                   </Link>
+
                   <Sheet>
                     <SheetTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="md:hidden"
-                      >
+                      <Button variant="outline" size="icon" className="md:hidden bg-transparent">
                         <Menu className="h-5 w-5" />
                         <span className="sr-only">Toggle menu</span>
                       </Button>
                     </SheetTrigger>
-                    <SheetContent side="right">
+                    <SheetContent
+                      side="right"
+                      className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+                    >
                       <div className="flex flex-col gap-6 mt-8">
-                        {[
-                          "About",
-                          "Projects",
-                          "Events",
-                          "Timeline",
-                          "Gallery",
-                          "Sponsors",
-                        ].map((page) => (
+                        {["About", "Projects", "Events", "Timeline", "Gallery", "Sponsors"].map((page) => (
                           <Link
                             key={page}
                             href={`/${page.toLowerCase()}`}
@@ -183,7 +183,7 @@ return (
               </div>
             </header>
             {/* MAIN CONTENT */}
-            <main className="flex-1 pt-20">{children}</main>
+            <main className="flex-1">{children}</main>
             {/* FOOTER */}
             <footer className="border-t bg-background">
               <div className="container py-4 md:py-5">

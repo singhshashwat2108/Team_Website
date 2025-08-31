@@ -533,7 +533,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="relative text-center max-w-3xl mx-auto"
             >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg">Our Mission</h2>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg pt-20">Our Mission</h2>
               <p className="text-white/90 mb-4 sm:mb-6 text-base sm:text-lg drop-shadow">
                 Established in 2017, Team Sammard is the official rocketry team of Vellore Institute of Technology, Vellore campus. Committed to advancing student-led aerospace innovation, the team actively participates in prestigious International competitions, including NASA CanSat, the Intercollegiate Rocket Engineering Competition (IREC), and the national-level IN-SPACe CanSat competition. Beyond these competitive endeavors, In addition to its competitive pursuits, Team Sammard actively organizes events aimed at inspiring and cultivating aerospace culture nationwide.
               </p>
