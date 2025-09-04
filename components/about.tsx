@@ -508,7 +508,7 @@ export default function AboutPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen relative bg-gray-900">
+    <div className="flex flex-col min-h-screen relative bg-black">
       {/* Falling Stars Background */}
       <FallingStars />
 
@@ -533,12 +533,15 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="relative text-center max-w-3xl mx-auto"
             >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg pt-20">Our Mission</h2>
+              <h2 className="arcane-font text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)] mt-12">Our Mission</h2>
               <p className="text-white/90 mb-4 sm:mb-6 text-base sm:text-lg drop-shadow">
-                Established in 2017, Team Sammard is the official rocketry team of Vellore Institute of Technology, Vellore campus. Committed to advancing student-led aerospace innovation, the team actively participates in prestigious International competitions, including NASA CanSat, the Intercollegiate Rocket Engineering Competition (IREC), and the national-level IN-SPACe CanSat competition. Beyond these competitive endeavors, In addition to its competitive pursuits, Team Sammard actively organizes events aimed at inspiring and cultivating aerospace culture nationwide.
+              Founded in 2017, Team Sammard is the rocketry team of Vellore Institute of Technology, Vellore campus, dedicated to advancing student-led aerospace innovation. We proudly represent India in prestigious international competitions such as NASA CanSat, the International Rocket Engineering Competition (IREC), and the IN-SPACe CanSat Competition at the national level. Beyond competitions, we actively showcase our work at leading aerospace exhibitions and tech festivals, including the Bangalore Space Expo (BSX) and IIT Kanpur’s Techkriti, helping us share our journey with industry leaders and fellow innovators.
+
               </p>
               <p className="text-white/90 text-base sm:text-lg drop-shadow">
-                Operating from the Innovation Creation Lab at VIT Vellore, the team provides a dynamic and collaborative environment where students bridge the gap between complex theoretical concepts and real-world aerospace applications. Members engage in research, design, and fabrication, gaining hands-on experience with advanced rocketry systems while developing essential problem-solving, leadership, and teamwork skills. Through this holistic approach, Team Sammard aims to nurture the next generation of aerospace engineers and innovators.
+              Operating out of the Innovation Creation Lab at VIT Vellore, we provide a dynamic and collaborative environment where students transform complex theoretical concepts into real-world aerospace applications. Through hands-on involvement in research, design, and fabrication, our members gain practical expertise in advanced rocketry systems while also developing essential skills in problem-solving, leadership, and teamwork.
+              </p>
+              <p className="text-white/90 text-base sm:text-lg drop-shadow">At our core, Team Sammard is driven by a singular mission: to empower and inspire the next generation of aerospace engineers and innovators, shaping the future of space exploration in India and beyond.
               </p>
             </motion.div>
           </div>
@@ -556,7 +559,7 @@ export default function AboutPage() {
         >
       <h2 className="text-4xl font-bold mb-8 text-slate-900">Our Legacy</h2>
       <p className="text-xl leading-relaxed text-slate-600 mb-6">
-            Over the years, Team Sammard has been led by exceptional individuals whose dedication and insight have shaped our mission and values. Each board has brought unique perspectives and accomplishments that continue to inspire our members.
+      Since its inception, Team Sammard has been shaped by visionary leaders whose dedication and achievements continue to inspire. Each board has built on the last, driving innovation, collaboration, and excellence—laying the foundation for our journey ahead.
           </p>
         </motion.div>
       </section>
@@ -775,11 +778,6 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.1 }}
           >
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <Rocket className="h-5 w-5 text-blue-400" />
-              <span className="text-slate-400 text-sm font-medium">CURRENT SELECTION</span>
-              <Rocket className="h-5 w-5 text-blue-400 rotate-180" />
-            </div>
             <h3 className="text-2xl font-bold text-white mb-2">{getMemberAtIndex(currentIndex).name}</h3>
             <p className="text-blue-400 font-semibold text-lg mb-3">{getMemberAtIndex(currentIndex).role}</p>
             <p className="text-slate-300 text-base leading-relaxed max-w-md mx-auto">

@@ -17,31 +17,40 @@ interface TimelineItem {
   title: string;
   description: string[];
   icon: React.ReactNode;
-  side: 'left' | 'right';
   images?: string[];
   layout: 'single' | 'double' | 'triple' | 'none';
 }
 
 const timelineData: TimelineItem[] = [
   {
-    year: '2025',
-    title: 'Breaking New Frontiers',
+    year: '2017',
+    title: 'Genesis of Sammard',
     description: [
-      'Had a successful test for our first in-house developed J-class KNSB solid rocket motor.',
+      'Team Sammard was founded, uniting passionate students to embark on a journey in space technology and engineering.',
     ],
-    icon: <Trophy className="w-6 h-6" />,
-    side: 'left',
+    icon: <Rocket className="w-6 h-6" />,
     layout: 'none',
   },
   {
-    year: '2024',
-    title: 'Elevating Global Presence',
+    year: '2018',
+    title: 'Making Our Mark',
     description: [
-      'Presented at Bangalore\'s Space Expo 2024.',
-      'Launched Agneya at SA Cup.',
+      'Achieved 18th rank worldwide in the international Cansat competition, marking Team Sammard\'s first appearance on the global stage.',
     ],
-    icon: <Users className="w-6 h-6" />,
-    side: 'right',
+    icon: <Target className="w-6 h-6" />,
+    images: [
+      '/placeholder.svg?height=400&width=400',
+    ],
+    layout: 'single',
+  },
+  {
+    year: '2019',
+    title: 'Strengthening Global Ties',
+    description: [
+      'Secured 20th rank globally in Cansat.',
+      'Presented innovations at ISRO\'s Bangalore Space Expo 2019, strengthening industry connections.',
+    ],
+    icon: <Flame className="w-6 h-6" />,
     images: [
       '/placeholder.svg?height=400&width=400',
       '/placeholder.svg?height=400&width=400',
@@ -49,16 +58,31 @@ const timelineData: TimelineItem[] = [
     layout: 'double',
   },
   {
-    year: '2023',
-    title: 'Inspiring Innovation',
+    year: '2020',
+    title: 'Forging Ahead Through Innovation',
     description: [
-      'Conducted the Ignitia workshop during Yantra.',
-      'Launched Vajra at SA Cup.',
-      'Hosted a lecture with Chandrayaan-3 Mission Director, inspiring the next generation.',
+      'Hosted the Astrophilia webinar in collaboration with Star Labs.',
+      'Hosted the Space Voyagers webinar with SAE VIT.',
+      'Started research and development for the sounding rocket.',
     ],
-    icon: <Globe className="w-6 h-6" />,
-    side: 'left',
+    icon: <Zap className="w-6 h-6" />,
     layout: 'none',
+  },
+  {
+    year: '2021',
+    title: 'Ascending the Ranks',
+    description: [
+      'Ranked 13th worldwide in Cansat.',
+      'Achieved 5th rank in Asia Pacific and competed in the 10K COTS category at IREC.',
+      'Collaborated with BSG Karnataka for SatCan.',
+    ],
+    icon: <Star className="w-6 h-6" />,
+    images: [
+      '/placeholder.svg?height=400&width=400',
+      '/placeholder.svg?height=400&width=400',
+      '/placeholder.svg?height=400&width=400',
+    ],
+    layout: 'triple',
   },
   {
     year: '2022',
@@ -71,50 +95,30 @@ const timelineData: TimelineItem[] = [
       'Achieved successful test of the recovery system.',
     ],
     icon: <Satellite className="w-6 h-6" />,
-    side: 'right',
     images: [
       '/placeholder.svg?height=400&width=400',
     ],
     layout: 'single',
   },
   {
-    year: '2021',
-    title: 'Ascending the Ranks',
+    year: '2023',
+    title: 'Inspiring Innovation',
     description: [
-      'Ranked 13th worldwide in Cansat.',
-      'Achieved 5th rank in Asia Pacific and competed in the 10K COTS category at IREC.',
-      'Collaborated with BSG Karnataka for SatCan.',
+      'Conducted the Ignitia workshop during Yantra.',
+      'Launched Vajra at SA Cup.',
+      'Hosted a lecture with Chandrayaan-3 Mission Director, inspiring the next generation.',
     ],
-    icon: <Star className="w-6 h-6" />,
-    side: 'left',
-    images: [
-      '/placeholder.svg?height=400&width=400',
-      '/placeholder.svg?height=400&width=400',
-      '/placeholder.svg?height=400&width=400',
-    ],
-    layout: 'triple',
-  },
-  {
-    year: '2020',
-    title: 'Forging Ahead Through Innovation',
-    description: [
-      'Hosted the Astrophilia webinar in collaboration with Star Labs.',
-      'Hosted the Space Voyagers webinar with SAE VIT.',
-      'Started research and development for the sounding rocket.',
-    ],
-    icon: <Zap className="w-6 h-6" />,
-    side: 'right',
+    icon: <Globe className="w-6 h-6" />,
     layout: 'none',
   },
   {
-    year: '2019',
-    title: 'Strengthening Global Ties',
+    year: '2024',
+    title: 'Elevating Global Presence',
     description: [
-      'Secured 20th rank globally in Cansat.',
-      'Presented innovations at ISRO\'s Bangalore Space Expo 2019, strengthening industry connections.',
+      'Presented at Bangalore\'s Space Expo 2024.',
+      'Launched Agneya at SA Cup.',
     ],
-    icon: <Flame className="w-6 h-6" />,
-    side: 'left',
+    icon: <Users className="w-6 h-6" />,
     images: [
       '/placeholder.svg?height=400&width=400',
       '/placeholder.svg?height=400&width=400',
@@ -122,28 +126,14 @@ const timelineData: TimelineItem[] = [
     layout: 'double',
   },
   {
-    year: '2018',
-    title: 'Making Our Mark',
+    year: '2025',
+    title: 'Breaking New Frontiers',
     description: [
-      'Achieved 18th rank worldwide in the international Cansat competition, marking Team Sammard\'s first appearance on the global stage.',
+      'Had a successful test for our first in-house developed J-class KNSB solid rocket motor.',
     ],
-    icon: <Target className="w-6 h-6" />,
-    side: 'right',
-    images: [
-      '/placeholder.svg?height=400&width=400',
-    ],
-    layout: 'single',
-  },
-  {
-    year: '2017',
-    title: 'Genesis of Sammard',
-    description: [
-      'Team Sammard was founded, uniting passionate students to embark on a journey in space technology and engineering.',
-    ],
-    icon: <Rocket className="w-6 h-6" />,
-    side: 'left',
+    icon: <Trophy className="w-6 h-6" />,
     layout: 'none',
-  },
+  }
 ];
 
 // Falling Stars Component
@@ -208,9 +198,7 @@ const Timeline = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [containerWidth, setContainerWidth] = useState(800);
 
-  // Add this useEffect to initialize the refs array
   useEffect(() => {
     itemRefs.current = itemRefs.current.slice(0, timelineData.length);
     for (let i = itemRefs.current.length; i < timelineData.length; i++) {
@@ -222,8 +210,12 @@ const Timeline = () => {
     const handleScroll = () => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
-      const visibleEnd = Math.min(rect.height, window.innerHeight - rect.top);
-      const progress = Math.max(0, Math.min(1, visibleEnd / rect.height));
+      const windowHeight = window.innerHeight;
+      const scrollTop = window.scrollY;
+      const elementTop = containerRef.current.offsetTop;
+      const elementHeight = containerRef.current.scrollHeight;
+      
+      const progress = Math.min(Math.max((scrollTop - elementTop + windowHeight * 0.5) / elementHeight, 0), 1);
       setScrollProgress(progress);
     };
 
@@ -248,88 +240,23 @@ const Timeline = () => {
       );
       observer.observe(ref);
       return observer;
-    }).filter(Boolean); // Filter out null observers
+    }).filter(Boolean);
 
     return () => {
       observers.forEach((observer) => observer?.disconnect());
     };
-  }, [timelineData.length]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (containerRef.current) {
-        const width = Math.min(containerRef.current.clientWidth, 1200); // Cap max width
-        setContainerWidth(width);
-      }
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Base horizontal wave amplitude (will be clamped to viewport to avoid horizontal scroll)
-  const amplitudeBase = React.useMemo(() => {
-    if (containerWidth < 640) return 60;      // phones
-    if (containerWidth < 1024) return 90;     // tablets
-    if (containerWidth < 1536) return 110;    // desktop
-    return 130;                               // very wide screens
-  }, [containerWidth]);
-  const frequency = 0.006; // Wave frequency
-  // Removed hard-coded asymmetric margins (previously marginLeft / marginRight) to center timeline
-  const yGap = 400;
-  const yBase = 400;
-  const totalHeight = timelineData.length * yGap + yBase;
-
-  const generateWavePath = (amp: number) => {
-    const points = [];
-    const centerX = containerWidth / 2;
-    // Generate full path immediately without scroll dependency
-    for (let y = 0; y <= totalHeight; y += 2) {
-      const x = Math.sin(y * frequency) * amp + centerX;
-      points.push(`${x},${y}`);
-    }
-    return points.length > 0 ? `M ${points.join(' L ')}` : '';
-  };
-
-  const getCirclePosition = (yPosition: number) => {
-    const centerX = containerWidth / 2;
-  const xPosition = Math.sin(yPosition * frequency) * safeAmplitude + centerX;
-    return { x: xPosition, y: yPosition };
-  };
-
-  const getResponsiveMargins = () => {
-    // Card widths by breakpoint (Tailwind: w-72=18rem, md:w-80=20rem, lg:w-96=24rem)
-  let cardWidth = 288; // default (w-72)
-    if (containerWidth >= 768) cardWidth = 320; // md
-    if (containerWidth >= 1024) cardWidth = 384; // lg
-
-    // Desired gap between wave center line and card edge
-  // Horizontal clearance between wave center line and nearest card edge
-  let gap = 75; // base desktop
-  if (containerWidth < 640) gap = 50;            // phones
-  else if (containerWidth < 1024) gap = 65;      // tablets
-  else if (containerWidth >= 1536) gap = 90;     // very wide
-
-    // Left margin must be cardWidth + gap so the right edge of left card aligns at center-gap
-    // Right margin is just the gap so left edge of right card aligns at center+gap
-  return { left: cardWidth + gap, right: gap, cardWidth };
-  };
-
-  const margins = getResponsiveMargins();
-
-  // Clamp amplitude so even extreme sine offset + card width + gap stays inside container
-  const safeAmplitude = React.useMemo(() => {
-    const paddingApprox = 64; // px (px-8 left + right typical on small, adjust generously)
-    const maxAllowed = Math.max(20, (containerWidth - (margins.cardWidth + paddingApprox + margins.right + 20)) / 2);
-    return Math.min(amplitudeBase, maxAllowed);
-  }, [amplitudeBase, containerWidth, margins.cardWidth, margins.right]);
-
   return (
-    <div className="relative">
-      {/* Add Orbitron Font */}
+    <div className="relative min-h-screen bg-black">
+      {/* Add Custom Styles */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
         
+        * {
+          box-sizing: border-box;
+        }
+
         .arcane-font {
           font-family: 'Orbitron', monospace;
           font-weight: 700;
@@ -337,20 +264,190 @@ const Timeline = () => {
           text-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
         }
 
-        .animate-gradient-shift {
-          background-size: 400% 400%;
-          animation: gradientShift 20s ease infinite;
+        .timeline-heading {
+          font-size: 50px;
+          background: #ff6a00;
+          background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);
+          background: linear-gradient(to right, #ff6a00, #ee0979);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          line-height: 1.2;
         }
 
-        @keyframes gradientShift {
-          0% {
-            background-position: 0% 50%;
+        .timeline-container {
+          width: 90vw;
+          max-width: 1360px;
+          margin: 0 auto;
+        }
+
+        .timeline-component {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          max-width: 1120px;
+          margin: 0 auto;
+          display: flex;
+          position: relative;
+        }
+
+        .timeline-item {
+          z-index: 2;
+          grid-column-gap: 0px;
+          grid-row-gap: 0px;
+          grid-template-rows: auto;
+          grid-template-columns: 1fr 180px 1fr;
+          grid-auto-columns: 1fr;
+          padding: 80px 0;
+          display: grid;
+          position: relative;
+          width: 100%;
+        }
+
+        .timeline-left {
+          text-align: right;
+          justify-content: flex-end;
+          align-items: flex-start;
+          display: flex;
+          padding-right: 40px;
+        }
+
+        .timeline-centre {
+          justify-content: center;
+          display: flex;
+        }
+
+        .timeline-right {
+          padding-left: 40px;
+        }
+
+        .timeline-date-text {
+          color: #fff;
+          letter-spacing: -0.03em;
+          font-size: 48px;
+          font-weight: 500;
+          line-height: 1.2;
+          position: sticky;
+          top: 50vh;
+          transform: translateY(-50%);
+        }
+
+        .timeline-text {
+          color: #fff;
+          font-size: 24px;
+          font-weight: 500;
+          line-height: 1.3;
+          margin-bottom: 32px;
+        }
+
+        .timeline-circle {
+          background-color: #fff;
+          border-radius: 100%;
+          width: 15px;
+          min-width: 15px;
+          max-width: 15px;
+          height: 15px;
+          min-height: 15px;
+          max-height: 15px;
+          position: sticky;
+          top: 50vh;
+          transform: translateY(-50%);
+          box-shadow: 0 0 0 8px #0a0a0a;
+        }
+
+        .timeline-progress {
+          z-index: -2;
+          background-color: #414141;
+          width: 3px;
+          height: 100%;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .timeline-progress-bar {
+          z-index: -1;
+          background: #ff6a00;
+          background: -webkit-linear-gradient(to bottom, #ff6a00, #ee0979);
+          background: linear-gradient(to bottom, #ff6a00, #ee0979);
+          width: 3px;
+          position: fixed;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 0;
+          transition: height 0.1s ease-out;
+        }
+
+        .overlay-fade-top {
+          background-image: linear-gradient(#0a0a0a, #0a0a0a00);
+          height: 80px;
+          position: absolute;
+          inset: 0% 0% auto;
+          z-index: 10;
+        }
+
+        .overlay-fade-bottom {
+          background-image: linear-gradient(to top, #0a0a0a, #0a0a0a00);
+          height: 80px;
+          position: absolute;
+          inset: auto 0% 0%;
+          z-index: 10;
+        }
+
+        @media screen and (max-width: 767px) {
+          .timeline-heading {
+            font-size: 40px;
           }
-          50% {
-            background-position: 100% 50%;
+
+          .timeline-item {
+            grid-template-columns: 64px 1fr;
+            width: 100%;
+            padding: 60px 0;
           }
-          100% {
-            background-position: 0% 50%;
+
+          .timeline-left {
+            text-align: left;
+            grid-area: 1 / 2 / 2 / 3;
+            padding-right: 0;
+            padding-left: 20px;
+          }
+
+          .timeline-centre {
+            justify-content: flex-start;
+            grid-area: 1 / 1 / 3 / 2;
+          }
+
+          .timeline-right {
+            grid-area: span 1 / span 1 / span 1 / span 1;
+            padding-left: 20px;
+          }
+
+          .timeline-date-text {
+            margin-bottom: 24px;
+            font-size: 36px;
+            position: relative;
+            top: auto;
+            transform: none;
+          }
+
+          .timeline-text {
+            font-size: 20px;
+          }
+
+          .timeline-progress {
+            left: 6px;
+            transform: none;
+          }
+
+          .timeline-progress-bar {
+            left: 6px;
+            transform: none;
+          }
+
+          .timeline-circle {
+            position: relative;
+            top: auto;
+            transform: none;
+            margin-top: 12px;
           }
         }
 
@@ -373,104 +470,41 @@ const Timeline = () => {
       {/* Falling Stars Background */}
       <FallingStars />
 
-      <div
-        ref={containerRef}
-        className="relative z-10 px-8 md:px-12 lg:px-20 xl:px-32" // Increased padding for larger screens
-        style={{ minHeight: `${totalHeight + 800}px` }}
-      >
-        {/* Hero Section */}
-        <div className="relative pt-32 pb-32 text-center">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="mb-8">
-              <h1 className="text-6xl md:text-8xl font-bold text-white arcane-font drop-shadow-2xl">
-                Mission Timeline
-              </h1>
+      {/* Hero Section */}
+      <div className="section-timeline-heading bg-black">
+        <div className="timeline-container">
+          <div className="py-32">
+            <div className="text-center max-w-2xl mx-auto text-white">
+              <div className="mb-8">
+                <h1 className="timeline-heading arcane-font text-8xl md:text-10xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-400 to-violet-600">
+                  Mission Timeline
+                </h1>
+              </div>
+              <p className="text-xl leading-relaxed drop-shadow-lg">
+                Charting Team Sammard's Odyssey — from our bold beginnings to the frontiers of innovation.
+              </p>
             </div>
-            <p className="text-2xl md:text-3xl text-white font-medium leading-relaxed drop-shadow-lg">
-              {'Charting Team Sammard\'s Odyssey — from our bold beginnings to the frontiers of innovation.'}
-            </p>
           </div>
         </div>
+      </div>
 
-        {/* Timeline */}
-        <div className="relative pb-32">
-          {/* Wave SVG */}
-          <svg
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{ height: `${totalHeight + 200}px` }}
-          >
-            <defs>
-              <linearGradient id="rocketGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#60A5FA" />
-                <stop offset="50%" stopColor="#3B82F6" />
-                <stop offset="100%" stopColor="#1D4ED8" />
-              </linearGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <path
-              d={generateWavePath(safeAmplitude)}
-              fill="none"
-              stroke="url(#rocketGradient)"
-              strokeWidth="6"
-              strokeDasharray="15,10"
-              filter="url(#glow)"
-              className="opacity-100"
-            />
-            {/* Year circles on the wave line */}
+      {/* Timeline Section */}
+      <div className="section-timeline bg-black relative z-10" ref={containerRef}>
+        <div className="timeline-container">
+          <div className="timeline-component">
+            {/* Progress Bar */}
+            <div className="timeline-progress"></div>
+            <div 
+              className="timeline-progress-bar" 
+              style={{
+                height: `${scrollProgress * 100}vh`
+              }}
+            ></div>
+
+            {/* Timeline Items */}
             {timelineData.map((item, index) => {
-              const yPosition = index * yGap + yBase;
-              const circlePos = getCirclePosition(yPosition);
               const isVisible = visibleItems.has(index);
-              return (
-                <g key={`circle-${index}`}>
-                  {/* Background halo removed (was pulsing circle) to avoid large expanding artifact */}
-                  {/* Main year circle */}
-                  <circle
-                    cx={circlePos.x}
-                    cy={circlePos.y}
-                    r="35"
-                    fill="url(#rocketGradient)"
-                    stroke="#FFFFFF"
-                    strokeWidth="3"
-                    filter="url(#glow)"
-                    className={`transition-all duration-600 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}
-                    style={{
-                      transformOrigin: `${circlePos.x}px ${circlePos.y}px`,
-                      transitionDelay: isVisible ? `${index * 150 + 200}ms` : '0ms',
-                    }}
-                  />
-                  {/* Year text */}
-                  <text
-                    x={circlePos.x}
-                    y={circlePos.y + 6}
-                    textAnchor="middle"
-                    className={`fill-white font-bold text-base transition-all duration-600 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-                    style={{
-                      transitionDelay: isVisible ? `${index * 150 + 300}ms` : '0ms',
-                      textShadow: '0 0 10px rgba(0,0,0,0.8)',
-                    }}
-                  >
-                    {item.year}
-                  </text>
-                </g>
-              );
-            })}
-          </svg>
-
-          {/* Timeline Items */}
-          <div className="relative z-20">
-            {timelineData.map((item, index) => {
-              const yPosition = index * yGap + yBase;
-              const centerX = containerWidth / 2;
-              const xOffset = Math.sin(yPosition * frequency) * safeAmplitude + centerX;
-              const isVisible = visibleItems.has(index);
-
+              
               return (
                 <div
                   key={index}
@@ -479,52 +513,67 @@ const Timeline = () => {
                       itemRefs.current[index] = el;
                     }
                   }}
-                  className="absolute transform -translate-y-1/2"
-                  style={{
-                    top: `${yPosition}px`,
-                    // For small screens, center all cards to avoid awkward left/right overlaps
-                    left: containerWidth < 640
-                      ? `${xOffset - (margins.cardWidth / 2)}px` // center card around wave on very small screens
-                      : item.side === 'left'
-                        ? `${xOffset - margins.left}px`
-                        : `${xOffset + margins.right}px`,
-                  }}
+                  className="timeline-item"
                 >
-                  <div
-                    className={`relative max-w-md transition-all duration-800 ease-out ${isVisible ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-32 scale-95'}`}
-                    style={{
-                      transitionDelay: isVisible ? `${index * 150}ms` : '0ms',
-                    }}
-                  >
-                    {/* Content Card */}
-                    <div
-                      className={`backdrop-blur-lg bg-black/40 border border-white/30 rounded-2xl shadow-2xl hover:shadow-blue-500/30 transition-all duration-500 hover:scale-105 w-72 md:w-80 lg:w-96 overflow-hidden hover:bg-black/50 ${isVisible ? 'translate-y-0' : 'translate-y-4'}`}
-                      style={{ transitionDelay: isVisible ? `${index * 150 + 100}ms` : '0ms' }}
+                  {/* Left Side - Date */}
+                  <div className="timeline-left">
+                    <div className="timeline-date-text">
+                      {item.year}
+                    </div>
+                  </div>
+
+                  {/* Center - Circle */}
+                  <div className="timeline-centre">
+                    <div className="timeline-circle"></div>
+                  </div>
+
+                  {/* Right Side - Content */}
+                  <div className="timeline-right">
+                    <div 
+                      className={`transition-all duration-800 ease-out ${
+                        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                      }`}
                     >
+                      {/* Title and Description */}
+                      <div className="mb-8">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="p-3 bg-gradient-to-br from-blue-500/30 to-blue-600/30 rounded-lg text-blue-300">
+                            {item.icon}
+                          </div>
+                          <h3 className="text-3xl font-bold text-white drop-shadow-lg">
+                            {item.title}
+                          </h3>
+                        </div>
+                        <div className="timeline-text">
+                          {item.description.map((desc, i) => (
+                            <div key={i} className="mb-3">
+                              {desc}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
                       {/* Images */}
                       {item.layout !== 'none' && item.images && (
-                        <div
-                          className={`transition-all duration-500 ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}
-                          style={{ transitionDelay: isVisible ? `${index * 150 + 150}ms` : '0ms' }}
-                        >
+                        <div className="timeline-image-wrapper">
                           {item.layout === 'single' && (
-                            <div className="relative">
+                            <div className="relative overflow-hidden rounded-lg">
                               <img
                                 src={item.images[0] || "/placeholder.svg"}
                                 alt={item.title}
-                                className="w-full h-64 object-cover hover:scale-110 transition-transform duration-700"
+                                className="w-full max-w-md h-64 object-cover hover:scale-110 transition-transform duration-700"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                             </div>
                           )}
                           {item.layout === 'double' && (
-                            <div className="grid grid-cols-2 gap-1">
+                            <div className="grid grid-cols-2 gap-2 max-w-md">
                               {item.images.slice(0, 2).map((img, imgIndex) => (
-                                <div key={imgIndex} className="relative">
+                                <div key={imgIndex} className="relative overflow-hidden rounded-lg">
                                   <img
                                     src={img || "/placeholder.svg"}
                                     alt={`${item.title} ${imgIndex + 1}`}
-                                    className="w-full h-40 object-cover hover:scale-110 transition-transform duration-700"
+                                    className="w-full h-32 object-cover hover:scale-110 transition-transform duration-700"
                                   />
                                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                                 </div>
@@ -532,22 +581,22 @@ const Timeline = () => {
                             </div>
                           )}
                           {item.layout === 'triple' && (
-                            <div className="space-y-1">
-                              <div className="relative">
+                            <div className="space-y-2 max-w-md">
+                              <div className="relative overflow-hidden rounded-lg">
                                 <img
                                   src={item.images[0] || "/placeholder.svg"}
                                   alt={`${item.title} main`}
-                                  className="w-full h-40 object-cover hover:scale-110 transition-transform duration-700"
+                                  className="w-full h-32 object-cover hover:scale-110 transition-transform duration-700"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                               </div>
-                              <div className="grid grid-cols-2 gap-1">
+                              <div className="grid grid-cols-2 gap-2">
                                 {item.images.slice(1, 3).map((img, imgIndex) => (
-                                  <div key={imgIndex} className="relative">
+                                  <div key={imgIndex} className="relative overflow-hidden rounded-lg">
                                     <img
                                       src={img || "/placeholder.svg"}
                                       alt={`${item.title} ${imgIndex + 2}`}
-                                      className="w-full h-24 object-cover hover:scale-110 transition-transform duration-700"
+                                      className="w-full h-20 object-cover hover:scale-110 transition-transform duration-700"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                                   </div>
@@ -557,39 +606,20 @@ const Timeline = () => {
                           )}
                         </div>
                       )}
-                      {/* Content */}
-                      <div className={`p-8 ${item.layout === 'none' ? 'pt-8' : 'pt-6'}`}>
-                        <div className="flex items-center gap-3 mb-4">
-                          <div
-                            className={`p-3 bg-gradient-to-br from-blue-500/30 to-blue-600/30 rounded-lg text-blue-300 transition-all duration-500 ${isVisible ? 'rotate-0 scale-100' : 'rotate-45 scale-0'}`}
-                            style={{ transitionDelay: isVisible ? `${index * 150 + 300}ms` : '0ms' }}
-                          >
-                            {item.icon}
-                          </div>
-                          <h3
-                            className={`text-2xl font-bold text-white drop-shadow-lg transition-all duration-500 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'}`}
-                            style={{ transitionDelay: isVisible ? `${index * 150 + 250}ms` : '0ms' }}
-                          >
-                            {item.title}
-                          </h3>
-                        </div>
-                        {/* Render bullet points */}
-                        <ul
-                          className={`list-disc list-inside text-white/90 text-lg leading-relaxed transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
-                          style={{ transitionDelay: isVisible ? `${index * 150 + 350}ms` : '0ms' }}
-                        >
-                          {item.description.map((point, i) => (
-                            <li key={i} className="mb-3 drop-shadow-sm">{point}</li>
-                          ))}
-                        </ul>
-                      </div>
                     </div>
                   </div>
                 </div>
               );
             })}
+
+            {/* Fade overlays */}
+            <div className="overlay-fade-top"></div>
+            <div className="overlay-fade-bottom"></div>
           </div>
         </div>
+        
+        {/* Extra space at bottom */}
+        <div style={{ height: '50vh' }}></div>
       </div>
     </div>
   );

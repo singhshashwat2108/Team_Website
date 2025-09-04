@@ -151,14 +151,14 @@ export default function ProjectsPage() {
       category: "Rockets",
       year: "2023",
       description:
-        "High-altitude rocket designed for the IREC competition, reaching altitudes of over 10,000 feet with a custom propulsion system.",
+        "Team Sammard’s first high-powered rocket, built for IREC 2023. Designed to reach 10,000 ft, Vajra features a carbon-fiber nosecone, SPARC avionics, and an experimental vibration-damping payload, marking a milestone in our journey into advanced rocketry.",
       image: "/placeholder.svg?height=800&width=1200",
       icon: <Rocket className="h-6 w-6" />,
     },
     {
       title: "CanSat",
       category: "CanSat",
-      year: "2022",
+      year: "2025",
       description:
         "Miniature satellite system designed to fit inside a rocket, featuring environmental sensors and a controlled descent system.",
       image: "/placeholder.svg?height=800&width=1200",
@@ -182,6 +182,15 @@ export default function ProjectsPage() {
       icon: <Rocket className="h-6 w-6" />,
     },
     {
+      title: "Bessie 1.0",
+      category: "Avionics",
+      year: "2024",
+      description:
+        "The SRAD GPS tracker, Bessie 1.0, is a first-generation GPS Tracker developed by Team Sammard for the SRAD GPS component. It incorporates a U-blox NEO-6M GPS module for a great ±2.5 meter (8.2 feet) positional accuracy. The GPS telemetry consisting of latitude, longitude, altitude, speed, heading, and satellite fix is transmitted to a ground station receiver module “Shrota” over 915MHz LoRa RFM95W connected to the teammate’s mobile phone running a custom GPS tracker application developed by Team Sammard itself.",
+      image: "/placeholder.svg?height=800&width=1200",
+      icon: <Wrench className="h-6 w-6" />,
+    },
+    {
       title: "Propulsion System",
       category: "Research",
       year: "2022",
@@ -193,27 +202,68 @@ export default function ProjectsPage() {
     {
       title: "CanSat",
       category: "CanSat",
-      year: "2021",
+      year: "2023",
       description: "CanSat design featuring a glider deployment system for extended data collection during descent.",
       image: "/placeholder.svg?height=800&width=1200",
       icon: <Satellite className="h-6 w-6" />,
     },
     {
+      title:"Bessie 2.0",
+      category:"Avonics",
+      year:"2025",
+      description:"BESSIE v2.0 is Team Sammard\’s fully custom Student Researched and Designed (SRAD) tracking system, engineered for precise rocket retrieval during flight and post-landing recovery. Built around the ESP32-S3 microcontroller, it supports advanced real-time sensor fusion, comprehensive data logging, and robust telemetry management.",
+      image:"/placeholder.svg?height=800&width=1200",
+      icon: <Rocket className="h-6 w-6"/>,
+    },
+    {
       title: "Agneya",
       category: "Rockets",
       year: "2024",
-      description: "Rocket designed for 10,000ft with Mid-range M class solid propellant motor.",
+      description: "Built for IREC 2024, Agneya is a 2.7 m high-powered rocket powered by a CTI M2020 motor, designed for the 10,000 ft category. With SPARC-II avionics and a vibration-analysis payload, it showcases our leap in rocket design and innovation.",
       image: "/placeholder.svg?height=800&width=1200",
       icon: <Rocket className="h-6 w-6" />,
+    },
+    {
+      title:"Sparc 4",
+      category:"Avionics",
+      year:"2024",
+      description:"SPARC 4 is Team Sammard’s fourth-generation student-designed flight computer, created for reliable avionics and data acquisition in high-powered rocketry. Equipped with GPS, pressure, and inertial sensors, it provides accurate altitude, position, and attitude data throughout flight.",
+      image:"/placeholder.svg?height=800&width=1200",
+      icon: <Rocket className="h-6 w-6"/>,
     },
     {
       title:"Airavat",
       category:"Rockets",
       year:"2025",
-      description:"Rocket designed for 10,000ft with Mid-range M class solid propellant motor.",
+      description:"Our IREC 2025 rocket, standing 3.2 m tall and powered by a CTI M2245 motor. With SPARC-III avionics and a structural health monitoring payload, Airavata marks the next leap in Team Sammard’s rocketry journey.",
       image:"/placeholder.svg?height=800&width=1200",
       icon: <Rocket className="h-6 w-6"/>,
-    }
+    },
+    {
+      title:"Shrota 2.0",
+      category:"Avionics",
+      year:"2025",
+      description:"Shrota 2.0—derived from the Sanskrit word for “a listener”—is Team Sammard\’s custom-built telemetry receiver and tracker system designed for reliable long-range rocket tracking. Powered by a single 18650 lithium-ion battery, it refreshes positional data at 5 Hz using a 50-channel GPS receiver that supports WAAS, EGNOS, and MSAS augmentation systems for enhanced accuracy.",
+      image:"/placeholder.svg?height=800&width=1200",
+      icon: <Rocket className="h-6 w-6"/>,
+    },
+    {
+      title: "ViziNav",
+      category: "Research",
+      year: "2025",
+      description:
+        "ViziNav  (Visual Aided Inertial Navigation System)is a vision-based navigation system developed in-house using a Raspberry Pi, a monocular camera, and an IMU. It enables real-time 6-DOF pose estimation and 3D trajectory reconstruction without relying on GPS, making it vital for suborbital and planetary missions where external navigation is unavailable. Beyond providing in-flight orientation, ViziNav allows detailed post-flight visualization of the rocket\’s path and holds potential for future autonomous landings on planetary surfaces.",
+      image: "/placeholder.svg?height=800&width=1200",
+      icon: <Cpu className="h-6 w-6" />,
+    },
+    {
+      title:"Sirius",
+      category:"Avionics",
+      year:"2025",
+      description:"A compact 70 mm custom flight computer with GPS, IMUs, LoRa telemetry, dual pyro channels, and redundant sensor systems—ensuring precision, reliability, and autonomous control in high-powered rocketry.",
+      image:"/placeholder.svg?height=800&width=1200",
+      icon: <Rocket className="h-6 w-6"/>,
+    },
   ]
 
   const openModal = (project: Project) => {
@@ -227,7 +277,7 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 relative">
+    <div className="min-h-screen bg-black relative">
       {/* Falling Stars Background */}
       <FallingStars />
       
@@ -239,9 +289,10 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-7xl font-bold mb-6 text-white">Our Projects</h1>
+            <h1 className="timeline-heading arcane-font text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)]">Our Projects</h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
-              Explore our innovative aerospace projects, from rockets to satellites.
+            From rockets to satellites, our projects showcase Team Sammard’s drive for innovation and excellence in aerospace engineering.
+
             </p>
           </motion.div>
         </div>
@@ -368,7 +419,7 @@ export default function ProjectsPage() {
             >
               <h3 className="text-2xl font-bold mb-4 text-white">Airavat - IREC Competition Rocket</h3>
               <p className="text-white/90 mb-6">
-                Our flagship rocket designed for the Intercollegiate Rocket Engineering Competition (IREC). Airavat
+                Our flagship rocket designed for the International Rocket Engineering Competition (IREC). Airavat
                 features a comercial off-the-shelf motor, advanced avionics, a scientific cubesat payload and a dual deployment recovery system.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-6">

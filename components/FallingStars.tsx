@@ -1,15 +1,17 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from "react"
 
+// Star interface for TypeScript
 interface Star {
-  id: number;
-  left: number;
-  animationDuration: number;
-  opacity: number;
-  size: number;
+  id: number
+  left: number
+  animationDuration: number
+  opacity: number
+  size: number
 }
 
+// Falling Stars Component
 const FallingStars = () => {
   const [stars, setStars] = useState<Star[]>([])
 
@@ -39,7 +41,7 @@ const FallingStars = () => {
             className="absolute bg-white rounded-full animate-pulse"
             style={{
               left: `${star.left}%`,
-              top: '-20px',
+              top: "-20px",
               opacity: star.opacity,
               width: `${star.size}px`,
               height: `${star.size}px`,
@@ -66,4 +68,4 @@ const FallingStars = () => {
   )
 }
 
-export default FallingStars;
+export default FallingStars

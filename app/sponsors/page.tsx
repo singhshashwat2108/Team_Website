@@ -1,23 +1,17 @@
 "use client"
-import React, { useState } from "react"
+import type React from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
 import FallingStars from "@/components/FallingStars"
 import { Turnstile } from "@marsidev/react-turnstile"
-
 
 export default function SponsorsPage() {
   const [formData, setFormData] = useState({
@@ -29,9 +23,9 @@ export default function SponsorsPage() {
     phone: "",
     sponsorshipLevel: "",
     message: "",
-    turnstileToken: "",   // ✅ new field
+    turnstileToken: "", // ✅ new field
   })
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
@@ -48,14 +42,14 @@ export default function SponsorsPage() {
       alert("🎉 Sponsorship request sent! We'll be in touch soon.")
       setFormData({
         nickname: "",
-    contactName: "",
-    email: "",
-    companyName: "",
-    companyWebsite: "",
-    phone: "",
-    sponsorshipLevel: "",
-    message: "",
-    turnstileToken: ""
+        contactName: "",
+        email: "",
+        companyName: "",
+        companyWebsite: "",
+        phone: "",
+        sponsorshipLevel: "",
+        message: "",
+        turnstileToken: "",
       })
     } catch {
       alert("Network error. Please try again.")
@@ -70,55 +64,49 @@ export default function SponsorsPage() {
     {
       name: "Converge",
       category: "Platinum",
-      description:
-        "Leading aerospace manufacturing company providing materials and technical expertise.",
+      description: "Leading aerospace manufacturing company providing materials and technical expertise.",
       image: "/placeholder.svg?height=400&width=800",
       website: "https://example.com",
     },
     {
       name: "SolidWorks",
       category: "Partners",
-      description:
-        "Innovative space technology company supporting our propulsion systems development.",
+      description: "Innovative space technology company supporting our propulsion systems development.",
       image: "/placeholder.svg?height=400&width=800",
       website: "https://example.com",
     },
     {
       name: "Altium Designer",
       category: "Partners",
-      description:
-        "Electronics manufacturer providing components for our avionics systems.",
+      description: "Electronics manufacturer providing components for our avionics systems.",
       image: "/placeholder.svg?height=400&width=800",
       website: "https://example.com",
     },
     {
       name: "Altair",
       category: "Partners",
-      description:
-        "Advanced materials supplier for our rocket airframes and structural components.",
+      description: "Advanced materials supplier for our rocket airframes and structural components.",
       image: "/placeholder.svg?height=400&width=800",
       website: "https://example.com",
     },
     {
       name: "VIT University",
       category: "Partners",
-      description:
-        "Our home institution providing facilities, mentorship, and academic support.",
+      description: "Our home institution providing facilities, mentorship, and academic support.",
       image: "/placeholder.svg?height=400&width=800",
       website: "https://example.com",
     },
     {
       name: "Aerospace Association of India",
       category: "Partners",
-      description:
-        "National organization supporting collegiate aerospace initiatives.",
+      description: "National organization supporting collegiate aerospace initiatives.",
       image: "/placeholder.svg?height=400&width=800",
       website: "https://example.com",
     },
   ]
 
   return (
-    <div className="flex flex-col min-h-screen relative bg-gray-900">
+    <div className="flex flex-col min-h-screen relative bg-black">
       <style jsx global>{`
         @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
         .arcane-font {
@@ -141,12 +129,10 @@ export default function SponsorsPage() {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 arcane-font text-white">
-                Thank You to Our Sponsors
-              </h2>
+              <h2 className="arcane-font text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 drop-shadow-[0_4px_6px_rgba(0,0,0,0.6)] mt-12">Thank You to Our Sponsors</h2>
               <p className="text-white/90 max-w-2xl mx-auto">
-                Our projects and achievements would not be possible without the
-                generous support of our sponsors and partners.
+                Our projects and achievements would not be possible without the generous support of our sponsors and
+                partners.
               </p>
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -191,11 +177,7 @@ export default function SponsorsPage() {
                         className="w-full bg-white/10 text-white border-white/30 hover:bg-white/20 transition-all"
                         asChild
                       >
-                        <a
-                          href={sponsor.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <a href={sponsor.website} target="_blank" rel="noopener noreferrer">
                           Visit Website <ExternalLink className="ml-2 h-4 w-4" />
                         </a>
                       </Button>
@@ -218,9 +200,7 @@ export default function SponsorsPage() {
             >
               <Card className="backdrop-blur-md bg-white/10 border border-white/50">
                 <CardHeader className="text-center">
-                  <CardTitle className="text-5xl font-bold arcane-font text-white">
-                    Become a Sponsor
-                  </CardTitle>
+                  <CardTitle className="text-5xl font-bold arcane-font text-white">Become a Sponsor</CardTitle>
                   <CardDescription className="text-white/80 text-lg">
                     Join our mission to push the boundaries of aerospace engineering.
                   </CardDescription>
@@ -231,97 +211,95 @@ export default function SponsorsPage() {
                       type="text"
                       name="nickname"
                       value={formData.nickname}
-                      onChange={(e) =>
-                        handleInputChange("nickname", e.target.value)
-                      }
+                      onChange={(e) => handleInputChange("nickname", e.target.value)}
                       autoComplete="off"
                       style={{ display: "none" }}
                     />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="contactName" className="text-white">Contact Name *</Label>
+                        <Label htmlFor="contactName" className="text-white">
+                          Contact Name *
+                        </Label>
                         <Input
                           id="contactName"
                           value={formData.contactName}
-                          onChange={(e) =>
-                            handleInputChange("contactName", e.target.value)
-                          }
+                          onChange={(e) => handleInputChange("contactName", e.target.value)}
                           required
                           className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email" className="text-white">Email *</Label>
+                        <Label htmlFor="email" className="text-white">
+                          Email *
+                        </Label>
                         <Input
                           id="email"
                           type="email"
                           value={formData.email}
-                          onChange={(e) =>
-                            handleInputChange("email", e.target.value)
-                          }
+                          onChange={(e) => handleInputChange("email", e.target.value)}
                           required
                           className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="companyName" className="text-white">Company Name *</Label>
+                      <Label htmlFor="companyName" className="text-white">
+                        Company Name *
+                      </Label>
                       <Input
                         id="companyName"
                         value={formData.companyName}
-                        onChange={(e) =>
-                          handleInputChange("companyName", e.target.value)
-                        }
+                        onChange={(e) => handleInputChange("companyName", e.target.value)}
                         required
                         className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                       />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="companyWebsite" className="text-white">Company Website *</Label>
+                        <Label htmlFor="companyWebsite" className="text-white">
+                          Company Website *
+                        </Label>
                         <Input
                           id="companyWebsite"
                           type="url"
                           value={formData.companyWebsite}
-                          onChange={(e) =>
-                            handleInputChange("companyWebsite", e.target.value)
-                          }
+                          onChange={(e) => handleInputChange("companyWebsite", e.target.value)}
                           required
                           className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="phone" className="text-white">Phone</Label>
+                        <Label htmlFor="phone" className="text-white">
+                          Phone
+                        </Label>
                         <Input
                           id="phone"
                           type="tel"
                           value={formData.phone}
-                          onChange={(e) =>
-                            handleInputChange("phone", e.target.value)
-                          }
+                          onChange={(e) => handleInputChange("phone", e.target.value)}
                           className="bg-white/10 border-white/30 text-white placeholder:text-white/50"
                         />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="text-white">Message *</Label>
+                      <Label htmlFor="message" className="text-white">
+                        Message *
+                      </Label>
                       <Textarea
                         id="message"
                         required
                         className="min-h-[120px] bg-white/10 border-white/30 text-white placeholder:text-white/50"
                         value={formData.message}
-                        onChange={(e) =>
-                          handleInputChange("message", e.target.value)
-                        }
+                        onChange={(e) => handleInputChange("message", e.target.value)}
                       />
                     </div>
 
                     <Turnstile
-                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                    onSuccess={(token) => {
-                    setFormData((prev) => ({ ...prev, turnstileToken: token }))
-                    }}
-                    options={{ theme: "dark" }}
+                      siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                      onSuccess={(token) => {
+                        setFormData((prev) => ({ ...prev, turnstileToken: token }))
+                      }}
+                      options={{ theme: "dark" }}
                     />
 
                     <Button

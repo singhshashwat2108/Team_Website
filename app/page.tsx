@@ -121,12 +121,10 @@ return (
           >
             <h2 className="ml-6 text-3xl md:text-4xl font-bold mb-6 text-white">Who We Are</h2>
             <p className="ml-6 text-white/90 mb-6">
-              Team Sammard is a student based aerospace team dedicated to revolutionizing space technology in india through innovation, research and development. We focus on developing and designing high power sounding rockets, payloads and cannister satelites.
+            Team Sammard is a student-led aerospace team committed to advancing space technology in India through innovation, research, and development. Our work focuses on the design and development of high-power sounding rockets, advanced payloads, and canister satellites, pushing the boundaries of student-driven aerospace engineering.
             </p>
             <p className="ml-6 text-white/90 text-sm sm:text-base">
-              Based at VIT Vellore's Innovation Creation Lab, we foster a collaborative environment where students can apply
-              theoretical knowledge to practical aerospace challenges, preparing the next generation of aerospace
-              engineers.
+            Based at VIT Vellore’s Creations and Innovation Lab, we thrive in a collaborative ecosystem where ideas transform into real-world solutions. By bridging classroom learning with hands-on projects, we aim to empower the next generation of aerospace engineers with the skills, experience, and vision to shape the future of space exploration.
             </p>
             <Button className="mt-6 ml-6 backdrop-blur-md bg-blue-600/80 hover:bg-blue-600 border border-blue-400/30" asChild>
               <Link href="/about" className="flex items-center whitespace-nowrap">
@@ -192,7 +190,7 @@ return (
           {[
             {
               title: "IREC Rocket",
-              description: "Our competition rocket for the Intercollegiate Rocket Engineering Competition.",
+              description: "Our competition rocket for the International Rocket Engineering Competition.",
               icon: <Rocket className="h-10 w-10 text-blue-300" />,
             },
             {
@@ -268,7 +266,7 @@ return (
         title: "IREC 2025",
         date: "June 2025",
         location: "New Mexico, USA",
-        description: "Intercollegiate Rocket Engineering Competition",
+        description: "International Rocket Engineering Competition",
       },
       {
         title: "CanSat Competition",

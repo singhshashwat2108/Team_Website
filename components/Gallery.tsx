@@ -241,7 +241,7 @@ const Gallery = () => {
   }
 
   return (
-    <div className="relative">
+    <div className="relative bg-black">
       {/* Add Orbitron Font and global animations */}
   <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
@@ -299,7 +299,7 @@ const Gallery = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 arcane-font">Gallery</h1>
+              <h1 className="arcane-font text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">Gallery</h1>
               <p className="text-white/80 text-lg max-w-2xl mx-auto">
                 Explore our journey through the years - from founding moments to major milestones
               </p>

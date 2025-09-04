@@ -47,12 +47,34 @@ children: React.ReactNode;
 const [scrolled, setScrolled] = useState(false);
 const [showSplash, setShowSplash] = useState(false);
 const [isLoading, setIsLoading] = useState(true);
+const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+const [lastScrollY, setLastScrollY] = useState(0);
 
 useEffect(() => {
-  const handleScroll = () => setScrolled(window.scrollY > 50);
-  window.addEventListener("scroll", handleScroll);
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    
+    // Update scrolled state for other effects
+    setScrolled(currentScrollY > 50);
+    
+    // Navbar visibility logic
+    if (currentScrollY < 10) {
+      // Always show navbar at the top
+      setIsNavbarVisible(true);
+    } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down and past 100px - hide navbar
+      setIsNavbarVisible(false);
+    } else if (currentScrollY < lastScrollY) {
+      // Scrolling up - show navbar
+      setIsNavbarVisible(true);
+    }
+    
+    setLastScrollY(currentScrollY);
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
   return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+}, [lastScrollY]);
 
 
 useEffect(() => {
@@ -113,15 +135,20 @@ return (
           <div className="flex flex-col min-h-screen bg-[url('/images/main/launch.jpeg')] bg-cover bg-center bg-no-repeat">
             {/* HEADER */}
             <header
-              className="
+              className={`
                 fixed inset-x-0 top-0 z-[100] h-20
                 bg-transparent
-              "
+                transform transition-transform duration-500 ease-in-out
+                ${isNavbarVisible ? 'translate-y-0' : '-translate-y-full'}
+              `}
             >
-              <div className="container flex h-20 items-center justify-between">
+              <div className="container relative flex h-20 items-center justify-between 
+              before:absolute before:top-0 before:left-0 before:right-0 before:h-4 before:bg-gradient-to-b before:from-black/100 before:to-transparent 
+              after:absolute after:top-0 after:bottom-0 after:left-0 after:w-6 after:bg-gradient-to-r after:from-black/10 after:to-transparent
+              overflow-hidden">
                 <Link href="/" className="flex items-center gap-2">
-                  <img src="/sammard_logo.png" alt="Team Sammard Logo" className="w-11 h-11" />
-                  <span className="font-bold text-lg ml-[3px] mt-[1px]">TEAM SAMMARD</span>
+                  <img src="/sammard_logo.png" alt="Team Sammard Logo" className="w-12 h-13" />
+                  
                 </Link>
 
                 {/* Desktop nav */}
@@ -133,7 +160,7 @@ return (
                       className="h-auto px-0 bg-transparent text-foreground hover:bg-transparent relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-foreground after:transition-all after:duration-300 hover:after:w-full"
                       variant="ghost"
                     >
-                      <Link href={`/${page.toLowerCase()}`} className="text-sm font-medium transition-colors">
+                      <Link href={`/${page.toLowerCase()}`} className="text-lg font-bold transition-colors">
                         {page}
                       </Link>
                     </Button>
